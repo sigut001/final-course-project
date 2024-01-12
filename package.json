@@ -1,0 +1,16 @@
+{
+  "name": "finalprojekt_onlineshop",
+  "version": "1.0.0",
+  "description": "A Onlineshop in wich Admins can place and administrade Products with a Clientsite where costumers can put these in there shopping-cart and buy them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon Gabriel Guth",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}
