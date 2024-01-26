@@ -1,0 +1,91 @@
+.dummyCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 17rem;
+  border-radius: 0.35rem;
+  border: 0.1rem solid var(--secondary-orange);
+  overflow: hidden;
+  position: relative;
+  height: 23rem;
+}
+
+.dummyImage {
+  height: 14rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.dummyIconContainer {
+  display: flex;
+  gap: 0.2rem;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+.discount {
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-white);
+  background-color: rgb(179, 36, 36);
+}
+
+.verfügbar {
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-white);
+  background-color: rgb(15, 141, 15);
+}
+
+.fastAusverkauft {
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-white);
+  background-color: rgb(198, 195, 25);
+}
+
+.ausverkauft {
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-white);
+  background-color: rgb(184, 41, 39);
+}
+
+.dummyBody {
+  padding: 1rem;
+  flex-grow: 1;
+  background-color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 0.3rem;
+}
+
+.dummyTitle {
+  overflow: hidden;
+  font-size: 1.4rem;
+  color: var(--primary-black);
+  font-weight: 800;
+  text-wrap: nowrap;
+}
+
+.dummySummary {
+  font-size: 0.85rem;
+  color: var(--secondary-grey);
+}
+
+.dummyPriceContainer {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-black);
+}

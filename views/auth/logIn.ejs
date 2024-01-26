@@ -1,0 +1,72 @@
+    <%- include("../included/head.ejs") %>
+  </head>
+  <body>
+    <%- include("../included/header/header.ejs", {page}) %>
+    <main class="pageStructure">
+      <h1 class="page-title">Log In</h1>
+     <%- include("../included/message.ejs")  %>
+
+     <% if (locals.logInData){ %>
+      <form class="form-little" method="POST" action="/postLogIn">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+          value="<%= locals.logInData.email  %>"
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+      
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" id="password" minlength="6" required/>
+        </div>
+
+       
+
+        <%- include("../included/csrf.ejs")  %>
+          <div class="flex justify-between items-center">
+          <button type="submit" class="btn btn_color">Submit</button>
+          <a class="underline" href="#">Passwort vergessen?</a>
+        </div>      </form>
+      <p>Du hast noch kein Konto   <a class="alternativ-link" href="/getSignUp">Sign up</a></p>
+
+      <% } else { %>
+        <form  class="form-little" method="POST" action="/postLogIn">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+      
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" id="password" minlength="6" required/>
+        </div>
+
+        
+        
+        <%- include("../included/csrf.ejs")  %>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn btn_color">Submit</button>
+          <a class="underline" href="#">Passwort vergessen?</a>
+        </div>
+      </form>
+          <p>Noch kein Konto?  <a class="alternativ-link" href="/getSignUp">Sign up</a></p>
+          
+      <% } %>
+    </main>
+    <%- include("../included/footer.ejs") %>
+ </body>
+ </html>
+

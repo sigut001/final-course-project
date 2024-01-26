@@ -1,0 +1,49 @@
+<article class="productCard">
+  <img
+    class="productCardImage"
+    src="<%= product.url %>"
+    alt="<%= product.title %>"
+  />
+  <div class="productCardIconContainer">
+    <% switch (product.status) {case "fastAusverkauft": %>
+    <p id="productCardStatus" class="fastAusverkauft">fast ausverkauft</p>
+    <%break; case "ausverkauft": %>
+    <p id="productCardStatus" class="ausverkauft">ausverkauft</p>
+    <%break; case "undeifined": %>
+    <p id="productCardStatus" class="verfügbar">verfügbar</p>
+    <% break; default: %>
+    <p id="productCardStatus" class="verfügbar">verfügbar</p>
+    <% } if (product.sale === "true") { %>
+    <p id="productCardDiscount" class="productCardDiscount">
+      -<%= product.discount %>%
+    </p>
+    <% } %>
+  </div>
+  <div class="productCardBody">
+    <div class="w-full">
+      <h2 class="productCardTitle"><%= product.title %></h2>
+    </div>
+    <div class="w-full">
+      <h4 class="productCardPrice">
+        <% if (product.sale === "false") { %>
+        <span>Preis: </span
+        ><span id="productCardPrice"><%= product.price %></span><span>€</span>
+        <% } else if (product.sale === "true") {%>
+        <span>Preis: statt </span
+        ><span class="line-through" id="productCardPrice"
+          ><%= product.price %></span
+        ><span id="productCardSalePrice"> nur <%= product.salePrice %></span
+        ><span>€</span>
+        <% } %>
+      </h4>
+    </div>
+    <div class="mt-3 flex flex-row gap-2 justify-end w-full">
+      <button class="btn btn_color c-primary-black">
+        <a href="/admin-edit-product/<%= product._id%>">View & Edit</a>
+      </button>
+      <button class="btn btn_color_alt delete_btn" data-_id="<%= product._id%>">
+        Delete
+      </button>
+    </div>
+  </div>
+</article>

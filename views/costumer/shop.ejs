@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../basic/included/head.ejs") %>
+    <link rel="stylesheet" href="./css/shop.css" />
+    <link rel="stylesheet" href="./css/productCard.css" />
+    <title>Shop</title>
+  </head>
+  <body>
+    <header><%- include("./included/header_costumer.ejs") %></header>
+    <main class="pageStructure">
+      <h1>Shop</h1>
+      <ol class="productCardGrid">
+        <li><%- include("./included/productCard.ejs") %></li>
+      </ol>
+    </main>
+    <footer><%- include("../basic/included/footer.ejs") %></footer>
+  </body>
+</html>

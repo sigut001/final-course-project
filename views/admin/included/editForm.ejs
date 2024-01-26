@@ -1,0 +1,101 @@
+<form class="form-big" action="/admin-edit-product/<%= product._id %>?_csrf=<%= locals.csrf %>" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="title" class="form-label">Titel</label>
+        <input
+        value="<%= product.title %>"
+            placeholder="Beispieltitel"
+            type="title"
+            class="form-control"
+            name="title"
+            id="title"
+            required
+        />
+    </div>
+    <div class="mb-3">
+        <label for="summary" class="form-label">Zusammenfassung</label>
+        <input
+        placeholder="Ein Beispiel für eine Zusammenfassung"
+        maxlength="75"
+        value="<%= product.summary %>"
+            type="summary"
+            class="form-control"
+            name="summary"
+            id="summary"
+            required
+        />
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input
+            type="file"
+            class="form-control"
+            name="image"
+            id="image"
+            accept="image/png, image/jpg"
+        />
+    </div>
+    <div class="flex flex-col gap-1 items-start pb-2">
+        <label for="discription" class="form-label">Beschreibung</label>
+        <textarea placeholder="Ein Beispieltext der Beschreibt wie toll das Produkt ist" class="w-full rounded-lg p-1" name="discription" id="discription" cols="30" rows="6"><%= product.discription %></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Preis in €</label>
+        <input value="<%= product.price %>" type="number" value="0"class="form-control" name="price" id="price" min="0.01" step="0.01" required/>
+    </div>   
+    <div class="mb-3">
+        <div class="form-select-container">
+            <label for="status">aktuelle Verfügbarkeit</label>
+            <select name="status" id="status">
+                <option value="verfügbar" <% if (product.status === "verfügbar") { %> selected <% } %> >verfügbar</option>
+                <option value="fastAusverkauft" <% if (product.status === "fastAusverkauft") { %> selected <% } %> >fast ausverkauft</option>
+                <option value="ausverkauft" <% if (product.status === "ausverkauft") { %> selected <% } %> >ausverkauft</option>
+            </select>
+        </div>
+    </div>    
+    <div class="mb-3">
+        <div class="form-select-container">
+            <label for="sale">Sale aktivieren?</label>
+            <select  name="sale" id="sale">
+                <option value="false" <% if (product.sale === "false") { %> selected <% } %>>deaktiviert</option>
+                <option value="true" <% if (product.sale === "true") { %> selected <% } %>>aktiviert</option>                                
+            </select>
+        </div>
+    </div>   
+    <div class="mb-3">
+        <div class="form-select-container">
+            <label for="discount">Rabatte</label>
+            <select 
+                <% if (product.sale === "false" || !product.sale) { %> disabled <% } %> 
+                name="discountShow" id="discountShow">
+                <option <% if (!product.discount) { %> selected <% } %> value="keinRabatt">Kein Rabatt</option>
+                <option <% if (product.discount === 5)  { %> selected <% } %> value="5">-5%</option>
+                <option <% if (product.discount === 10) { %> selected <% } %> value="10">-10%</option>
+                <option <% if (product.discount === 15) { %> selected <% } %> value="15">-15%</option>
+                <option <% if (product.discount === 20) { %> selected <% } %> value="20">-20%</option>
+                <option <% if (product.discount === 25) { %> selected <% } %> value="25">-25%</option>
+                <option <% if (product.discount === 50) { %> selected <% } %> value="50">-50%</option>
+            </select>
+            <select name="discount" hidden id="discount">
+                <option <% if (!product.discount) { %> selected <% } %> value="keinRabatt">Kein Rabatt</option>
+                <option <% if (product.discount === 5)  { %> selected <% } %> value="5">-5%</option>
+                <option <% if (product.discount === 10) { %> selected <% } %> value="10">-10%</option>
+                <option <% if (product.discount === 15) { %> selected <% } %> value="15">-15%</option>
+                <option <% if (product.discount === 20) { %> selected <% } %> value="20">-20%</option>
+                <option <% if (product.discount === 25) { %> selected <% } %> value="25">-25%</option>
+                <option <% if (product.discount === 50) { %> selected <% } %> value="50">-50%</option>
+            </select>
+        </div>
+    </div>   
+    <div class="mb-3">
+        <div class="form-select-container">
+            <label for="salePrice">Sale-Price</label>
+            <input value="<%= product.salePrice %>" id="salePriceShow" type="text" disabled>
+            <input value="<%= product.salePrice %>" name="salePrice" id="salePrice" type="number" hidden>
+        </div>
+    </div>
+    <div class="flex flex-row gap-2 justify-end pt-3">
+        <button type="reset" id="resetBtn" class="btn btn_color_alt">Reset</button>
+        <button type="submit" class="btn btn_color">Submit</button>
+    </div>
+    <%- include("../../included/csrf.ejs")  %>
+</form>

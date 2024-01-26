@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../basic/included/head.ejs") %> <%-
+    include("./included/head_admin.ejs") %>
+    <title>Management Orders</title>
+    <link rel="stylesheet" href="./css/orderList.css" />
+    <link rel="stylesheet" href="./css/order.css" />
+    <link rel="stylesheet" href="./css/adminOrders.css" />
+  </head>
+  <body>
+    <header><%- include("./included/header_admin.ejs", {nav: nav}) %></header>
+    <main class="pageStructure">
+      <h1>Your Orders</h1>
+      <section class="orders">
+        <ol class="orderList">
+          <li class="order-container">
+            <form class="order-form" action="">
+              <div class="order-header">
+                <span class="order-total">$459.95</span>
+                <span class="status-indicator">FULFILLED</span>
+              </div>
+              <div class="order-date">Tue, August 17, 2021</div>
+              <div class="customer-name">Julie Anders</div>
+              <div>Testing Plaza 5 (55881 Testcity)</div>
+              <ul class="product-list">
+                <li>A Keyboard - $399.96 ($99.99 x 4)</li>
+                <li>Magic Trackpad - $59.99 ($59.99 x 1)</li>
+              </ul>
+              <div class="flex-dir-row">
+                <select
+                  class="form-select width-10"
+                  aria-label="Default select example"
+                  name="status"
+                  id="status"
+                >
+                  <option value="FULFILLED">FULFILLED</option>
+                  <option value="FULFILLED">PENDING</option>
+                </select>
+                <button class="fulfilled-btn">Update</button>
+              </div>
+            </form>
+          </li>
+          <li class="order-container">
+            <form class="order-form" action="">
+              <div class="order-header">
+                <span class="order-total">$459.95</span>
+                <span class="status-indicator">FULFILLED</span>
+              </div>
+              <div class="order-date">Tue, August 17, 2021</div>
+              <div class="customer-name">Julie Anders</div>
+              <div>Testing Plaza 5 (55881 Testcity)</div>
+              <ul class="product-list">
+                <li>A Keyboard - $399.96 ($99.99 x 4)</li>
+                <li>Magic Trackpad - $59.99 ($59.99 x 1)</li>
+              </ul>
+              <div class="flex-dir-row">
+                <select
+                  class="form-select width-10"
+                  aria-label="Default select example"
+                  name="status"
+                  id="status"
+                >
+                  <option value="FULFILLED">FULFILLED</option>
+                  <option value="FULFILLED">PENDING</option>
+                </select>
+                <button class="fulfilled-btn">Update</button>
+              </div>
+            </form>
+          </li>
+        </ol>
+      </section>
+    </main>
+    <footer><%- include("../basic/included/footer.ejs") %></footer>
+  </body>
+</html>

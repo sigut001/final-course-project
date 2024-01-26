@@ -1,0 +1,68 @@
+
+    <%- include("../included/head.ejs") %>
+  </head>
+  <body>
+    <%- include("../included/header/header.ejs") %>
+    <main class="pageStructure">
+      <h1 class="page-title">Your Cart</h1>
+      <section class="cart">
+        <ol class="productsToOrder">
+          <div class="headline">
+            <p id="headlineProdukt">PRODUCT</p>
+            <p id="headlineAnzahl">ANZAHL</p>
+            <p id="headlineGesamtsumme">GESAMTSUMME</p>
+          </div>
+          <hr />
+          <li class="choosenProduct">
+            <div class="leftPart">
+              <img
+                class="productImage"
+                src="./img/logo.png"
+                alt="Produktbild"
+              />
+              <div class="productBody">
+                <h3 class="title">Product Nr. 1</h3>
+                <p class="price">1.79€</p>
+              </div>
+            </div>
+            <form class="middlePart" action="">
+              <input value="4" type="number" name="number" id="number" />
+            </form>
+            <div class="rightPart">
+              <p class="totalAmmount">7,16€</p>
+            </div>
+          </li>
+          <hr />
+          <li class="choosenProduct">
+            <div class="leftPart">
+              <img
+                class="productImage"
+                src="./img/logo.png"
+                alt="Produktbild"
+              />
+              <div class="productBody">
+                <h3 class="title">Product Nr. 1</h3>
+                <p class="price">1.79€</p>
+              </div>
+            </div>
+            <form class="middlePart" action="">
+              <input value="4" type="number" name="number" id="number" />
+            </form>
+            <div class="rightPart">
+              <p class="totalAmmount">7,16€</p>
+            </div>
+          </li>
+          <hr />
+        </ol>
+        <div class="calculation">
+          <button class="btn btn_color">Order for a fee</button>
+          <div class="ammount">
+            <h2>Total Ammont:</h2>
+            <p class="price-EUR totalAmmount">1.79€</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include("../included/footer.ejs") %>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+    <%- include("../included/head.ejs") %>
+    <link rel="stylesheet" href="/css/admin.product-styles.css">
+    <link rel="stylesheet" href="/css/basic.product-styles.css">
+  </head>
+  <body>
+    <%- include("../included/header/header.ejs", {page}) %>
+    <main class="pageStructure">
+      <h1 class="page-title">Products</h1>
+      <section>
+        <ul class="grid grid-cols-4 gap-3">
+                   <!-- Produkte -->
+                   <% if (productArray){ %>
+          <% productArray.forEach((product)=>{ %>
+            <li>
+              <%- include("./included/product-card.ejs", {product})  %>
+            </li>
+        <% })} %>
+        </ul>
+      </section>
+     <%- include("../included/message.ejs")  %>
+    </main>
+    <%- include("../included/footer.ejs") %>
+ </body>
+ </html>

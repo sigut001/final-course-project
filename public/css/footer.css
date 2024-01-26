@@ -1,0 +1,20 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  border-top: 0.1rem solid var(--primary-orange);
+}
+
+.contactData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  gap: 0.1rem;
+  padding: 1rem;
+}
+
+.contactData p {
+  margin: 0;
+}

@@ -1,0 +1,66 @@
+/* -------------------------------------------------------------------------- */
+/*                               create-product                               */
+/* -------------------------------------------------------------------------- */
+
+#svg-plus:hover path {
+  fill: var(--secondary-orange);
+  cursor: pointer;
+}
+
+.createProduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.createProductForm {
+  width: 45%;
+}
+
+.form-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-select-container > * {
+  width: 50%;
+  border-radius: 0.2rem;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  edit products                             */
+/* -------------------------------------------------------------------------- */
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.726);
+  position: fixed;
+  z-index: 100;
+}
+
+.abfrageFenster {
+  background-color: var(--primary-black);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  border: 0.1rem solid var(--secondary-orange);
+}
+
+.btn_wrapper {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+}

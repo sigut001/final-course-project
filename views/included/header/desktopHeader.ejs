@@ -1,0 +1,50 @@
+<header class="desktop">
+  <div class="logo-wrapper">
+    <img class="logo" src="./img/logo.png" alt="Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li class="<%= page.nav === 'products' ? 'actualView' : '' %>">
+        <a href="/products">Products</a>
+      </li>
+      <% if (locals.isAdmin) { %>
+      <li class="<%= page.nav === 'productManagement' ? 'actualView' : '' %>">
+        <a href="/productManagement">Product Management</a>
+      </li>
+
+      <li class="<%= page.nav === 'getCreateProducts' ? 'actualView' : '' %>">
+        <a href="/admin-create-products">Create Products</a>
+      </li>
+      <li class="<%= page.nav === 'getViewAdminOrders' ? 'actualView' : '' %>">
+        <a href="/admin-view-orders">Manage Orders</a>
+      </li>
+      <li>
+        <form class="logout" action="/postLogOut" method="POST">
+          <%- include("../csrf.ejs") %>
+          <button type="submit">Log out</button>
+        </form>
+      </li>
+      <% } if (locals.isAuth && !locals.isAdmin) { %>
+
+      <li class="<%= page.nav === 'getCostumerOrders' ? 'actualView' : '' %>">
+        <a href="/costumer-orders">View Orders</a>
+      </li>
+      <li>
+        <form class="logout" action="/postLogOut" method="POST">
+          <%- include("../csrf.ejs") %>
+          <button type="submit">Log out</button>
+        </form>
+      </li>
+      <% } if (!locals.isAuth && !locals.isAdmin) { %>
+
+      <li class="<%= page.nav === 'getSignUp' ? 'actualView' : '' %>">
+        <a href="/getSignUp">Sign Up</a>
+      </li>
+      <li class="<%= page.nav === 'getLogIn' ? 'actualView' : '' %>">
+        <a href="/getLogIn">Log In</a>
+      </li>
+
+      <% } %>
+    </ul>
+  </nav>
+</header>

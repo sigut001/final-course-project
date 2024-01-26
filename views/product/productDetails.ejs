@@ -1,0 +1,52 @@
+
+    <%- include("../included/head.ejs") %>
+  </head>
+  <body>
+    <%- include("../included/header/header.ejs") %>
+    <main class="pageStructure">
+      <section class="flex gap-2 align-top p-4 c-primary-white">
+        <div class="image-container w-1/2 p-4 bg-gray-800 rounded-lg">
+          <img src="<%= product.url %>" alt="Produktbild">
+        </div>
+        <div class="text-body-container w-1/2 flex flex-col p-4">
+          <div class="w-full flex flex-col gap-2">
+            <p class="c-secondary-grey">Old Stuff</p>
+            <h1 class="text-5xl"><%= product.title  %></h1>
+          </div>
+         
+          <% if (product.sale){ %>
+          <div class="price-container">
+            <div class="sale">
+              <p>alter Preis</p>
+              <p>neuer Preis</p>
+              <p>sale</p>
+              <p>Inkl. Mehrwertsteuer zuzüglich Versand</p>
+            </div>
+          </div>
+          <% } else { %>
+          <div class="price-contianer" >
+            <p><%= product.price  %></p>
+            <p>Inkl. Mehrwertsteuer zuzüglich <a href="">Versandkosten</a></p>
+          </div>
+          <% } %>
+          <div class="raiting-container">
+            <p>Bewertung</p>
+          </div>
+          <div class="number-container">
+            <label for="anzahl">Anzahl</label>
+            <input type="number" min="1" step="1">
+          </div>
+          <div class="bezahlen-container">
+            <button><a href="/add-to-cart">Add to Cart</a></button>
+            <button><a href="/#">Mit Paypal kaufen</a></button>
+          </div>
+          <div class="discription">
+            <p><%= product.discription  %></p>
+          </div>
+          
+        </div>
+      </section>
+    </main>
+    <%- include("../included/footer.ejs") %>
+  </body>
+</html>

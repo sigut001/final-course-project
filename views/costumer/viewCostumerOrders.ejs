@@ -1,0 +1,62 @@
+
+    <%- include("../included/head.ejs") %>
+  </head>
+  <body>
+   <%- include("../included/header/header.ejs") %>
+    <main class="pageStructure">
+      <h1 class="page-title">Your Orders</h1>
+      <section class="orders">
+        <ol class="orderList">
+          <li class="order">
+            <div class="orderHeader">
+              <div class="flex-dir-col">
+                <p style="font-weight: bolder">Total Ammount:</p>
+                <div class="totalAmmount">
+                  <p class="AmmountDOLLAR">90$</p>
+                  <p>/</p>
+                  <p class="AmmountEUR">79€</p>
+                </div>
+              </div>
+              <div class="flex-dir-col">
+                <p style="font-weight: bolder">Date:</p>
+                <p class="date">13.01.2023</p>
+              </div>
+              <div class="flex-dir-col">
+                <p style="font-weight: bolder">Order Status:</p>
+                <div class="orderStatus">PENDING</div>
+              </div>
+            </div>
+            <hr />
+            <div class="padding-1rem">
+              <ol class="productsOverview">
+                <li class="productOrder">
+                  <p class="title">Product Nr. 1</p>
+                  <div class="orderDetailCalculation">
+                    <p class="calculation">10 x 1.79€</p>
+                  </div>
+                  <div class="prices">
+                    <div class="prices">
+                      <p class="price-EUR">17.9€</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="productOrder">
+                  <p class="title">Product Nr. 1</p>
+                  <div class="orderDetailCalculation">
+                    <p class="calculation">10 x 1.79€</p>
+                  </div>
+                  <div class="prices">
+                    <div class="prices">
+                      <p class="price-EUR">17.9€</p>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+    <%- include("../included/footer.ejs") %>
+  </body>
+</html>

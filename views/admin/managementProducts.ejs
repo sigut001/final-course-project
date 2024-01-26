@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../basic/included/head.ejs") %>
+    <%-include("./included/head_admin.ejs") %>
+
+    <title>Create Products</title>
+    <link rel="stylesheet" href="./css/managementProducts.css" />
+  </head>
+  <body>
+    <header><%- include("./included/header_admin.ejs", {nav: nav}) %></header>
+    <main class="pageStructure">
+      <h1>Manage your Products</h1>
+      <section class="managementProducts">
+        <a class="btn btn_color" href="/createProduct">Create Product</a>
+        <ol class="productCardGrid">
+          <li>
+            <div class="productCard">
+              <img
+                src="./img/logo.png"
+                class="productCardImg"
+                alt="Produktbild"
+              />
+              <p class="productCardStatus vorhanden">auf Lager</p>
+
+              <div class="productCardBody">
+                <div class="productCardHeader">
+                  <h5 class="productCardTitle">Produkt 1</h5>
+                </div>
+                <div class="productCardText_wrapper">
+                  <p class="productCardText">
+                    Ein besodners schönes Logo für Sie und Ihn.
+                  </p>
+                </div>
+                <div class="productCardFooter">
+                  <p class="productCardPrice">1.79€</p>
+                  <div class="productCardBtnGroup">
+                    <a href="/editProduct" class="btn btn_color">View & Edit</a>
+                    <a href="/deleteProduct" class="btn btn_color">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+    <footer><%- include("../basic/included/footer.ejs") %></footer>
+  </body>
+</html>

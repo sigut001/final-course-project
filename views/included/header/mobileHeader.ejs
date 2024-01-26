@@ -1,0 +1,54 @@
+ <header class="mobile">
+<nav class="mobile-nav ">
+    <span class="block border-b-4 border-gray-200"></span>
+    <span class="block border-b-4 border-gray-200"></span>
+    <span class="block border-b-4 border-gray-200"></span>
+  </nav>
+<aside class="overlay ">
+     <nav >
+    <ul>
+      <li class="<%= page.nav === 'getProducts' ? 'actualView' : '' %>">
+        <a href="/admin-get-products">View Products</a>
+      </li>
+      <% if (locals.isAdmin) { %>
+      <li class="<%= page.nav === 'getCreateProducts' ? 'actualView' : '' %>">
+        <a href="/admin-create-products">Create Products</a>
+      </li>
+      <li class="<%= page.nav === 'getEditProducts' ? 'actualView' : '' %>">
+        <a href="/admin-edit-products">Edit Products</a>
+      </li>
+      <li class="<%= page.nav === 'getViewAdminOrders' ? 'actualView' : '' %>">
+        <a href="/admin-view-orders">Manage Orders</a>
+      </li>
+      <li>
+        <form class="logout" action="/postLogOut" method="POST">
+          <%- include("../csrf.ejs") %>
+          <button  type="submit">Log out</button>
+        </form>
+      </li>
+      <% } if (locals.isAuth && !locals.isAdmin) { %>
+      
+      <li class="<%= page.nav === 'getCostumerOrders' ? 'actualView' : '' %>">
+        <a href="/costumer-orders">View Orders</a>
+      </li>
+      <li>
+        <form class="logout" action="/postLogOut" method="POST">
+          <%- include("../csrf.ejs") %>
+          <button type="submit">Log out</button>
+        </form>
+      </li>
+      <% } if (!locals.isAuth && !locals.isAdmin) { %>
+
+      <li class="<%= page.nav === 'getSignUp' ? 'actualView' : '' %>">
+        <a href="/getSignUp">Sign Up</a>
+      </li>
+      <li class="<%= page.nav === 'getLogIn' ? 'actualView' : '' %>">
+        <a href="/getLogIn">Log In</a>
+      </li>
+
+      <% }  %>
+
+    </ul>
+  </nav>
+</aside>
+ </header>
