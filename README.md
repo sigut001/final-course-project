@@ -24,7 +24,7 @@ config: Beinhaltet Konfigurationsdateien wie configurationData.js für allgemein
 
 controller: Umfasst Controller-Dateien wie auth.controller.js und product.controller.js, die die Anwendungslogik für verschiedene Routen handhaben.
 
-database: Beinhaltet database.js, das für die Datenbankverbindung und -konfiguration zuständig ist.
+database: Beinhaltet database.js, das für die Datenbankverbindung mit einer MongoDB Datenbank und -konfiguration zuständig ist.
 
 middleware: Enthält Middleware-Funktionen wie Authentifizierungschecks (check-auth.js), Fehlerbehandlung (error-handler.js) und Bild-Uploads (image-upload.js).
 
