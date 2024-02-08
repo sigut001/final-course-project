@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../../' + locals.projectPath.viewPath.included.head) %>
+  </head>
+  <body>
+    <%- include('../../../' +
+    locals.projectPath.viewPath.included.header.header, {page}) %>
+    <main class="pageStructure">
+      <ul class="productList">
+        <li>
+          <article class="productCard">
+            <img
+              class="productCardImage"
+              src="<%= product.url %>"
+              alt="<%= product.title %>"
+            />
+            <div class="productCardStatus">
+              <p class="<%= product.status %>">
+                <%= product.status === 'verfügbar' ? 'auf Lager' :
+                product.status === 'fast-ausverkauft' ? 'fast ausverkauft' :
+                'ausverkauft' %>
+              </p>
+            </div>
+            <div class="productCardBody">
+              <div class="w-full">
+                <h2 class="productCardTitle"><%= product.title %></h2>
+              </div>
+              <div class="w-full h-14">
+                <h4 class="productCardSummary"><%= product.summary %></h4>
+              </div>
+              <div class="w-full">
+                <h4 class="productCardPrice">Preis: <%= product.price %> €</h4>
+              </div>
+              <div class="mt-3 flex flex-row gap-2 justify-end w-full">
+                <a
+                  href="<%= locals.projectPath.routPath.product.get.singleProduct.replace(':_id', product._id) %>"
+                  class="btn btn_color"
+                  >View</a
+                >
+                <a
+                  href="<%= locals.projectPath.routPath.costumer.post.addToCart.replace(':_id', product._id) %>"
+                  class="btn btn_color_alt"
+                  >Add to Cart</a
+                >
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </main>
+    <%- include('../../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

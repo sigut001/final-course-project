@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
+    <title>OldStuff</title>
+  </head>
+  <body>
+    <header>
+      <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+      {nav: nav}) %>
+    </header>
+    <main class="pageStructure">
+      <h1>Welcome at OldStuff!</h1>
+      <h3>View our products, you'll find treasures.</h3>
+    </main>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

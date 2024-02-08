@@ -1,0 +1,29 @@
+<%- include('../../' + locals.projectPath.viewPath.included.head) %>
+<link rel="stylesheet" href="/css/admin.product-styles.css">
+<link rel="stylesheet" href="/css/admin.dummyStyles.css">
+
+<script src="/js/admin/editProduct.js" defer></script>
+</head>
+<body>
+<%- include('../../' + locals.projectPath.viewPath.included.header.header, {page}) %>
+<main class="pageStructure">
+  <h1 class="page-title">Produkte Bearbeiten</h1>
+  <%- include('../../' + locals.projectPath.viewPath.included.message) %>
+  <div class="flex flex-row justify-center align-top gap-4">
+      <%- include('../../' + locals.projectPath.viewPath.admin.included.editForm) %>
+      <%- include('../../' + locals.projectPath.viewPath.admin.included.dummyPreview, { 
+          product: { 
+              title: "Beispieltitel", 
+              summary: "Beispieltext", 
+              description: "Beispieltext", 
+              price: 0.00, 
+              path: "", 
+              url: product.url, 
+              status: "verfügbar" 
+          }
+      }) %>
+  </div>
+</main>
+<%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+</body>
+</html>

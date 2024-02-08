@@ -1,0 +1,306 @@
+/* -------------------------------------------------------------------------- */
+/*                               tailwind-import                              */
+/* -------------------------------------------------------------------------- */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* -------------------------------------------------------------------------- */
+/*                                   colors                                   */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --primary-white: rgb(240, 240, 240);
+  --primary-black: rgb(30, 30, 30);
+  --primary-grey: rgb(34, 32, 32);
+  --primary-orange: #ee8300;
+
+  --secondary-white: rgb(229, 229, 229);
+  --secondary-black: rgb(43, 42, 42);
+  --secondary-grey: rgb(93, 86, 86);
+  --secondary-orange: rgb(255, 175, 77);
+}
+
+.c-primary-white {
+  color: var(--primary-white);
+}
+
+.c-primary-black {
+  color: var(--primary-black);
+}
+
+.c-primary-grey {
+  color: var(--primary-grey);
+}
+
+.c-primary-orange {
+  color: var(--primary-orange);
+}
+
+.c-secondary-white {
+  color: var(--secondary-white);
+}
+
+.c-secondary-black {
+  color: var(--secondary-black);
+}
+
+.c-secondary-grey {
+  color: var(--secondary-grey);
+}
+
+.c-secondary-orange {
+  color: var(--secondary-orange);
+}
+
+.bg-primary-white {
+  background-color: var(--primary-white);
+}
+
+.bg-primary-black {
+  background-color: var(--primary-black);
+}
+
+.bg-primary-grey {
+  background-color: var(--primary-grey);
+}
+
+.bg-primary-orange {
+  background-color: var(--primary-orange);
+}
+
+.bg-secondary-white {
+  background-color: var(--secondary-white);
+}
+
+.bg-secondary-black {
+  background-color: var(--secondary-black);
+}
+
+.bg-secondary-grey {
+  background-color: var(--secondary-grey);
+}
+
+.bg-secondary-orange {
+  background-color: var(--secondary-orange);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              genereal-styling                              */
+/* -------------------------------------------------------------------------- */
+html * {
+  box-sizing: border-box;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--primary-black);
+  color: var(--primary-orange);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  width: 80%;
+}
+
+main {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-orange);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  color: var(--primary-orange);
+  border-width: 0.2rem;
+  opacity: 0.75;
+  padding: 0.4rem;
+}
+
+.text_color_secondary {
+  color: var(--secondary-black);
+}
+
+.messages-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  width: 30rem;
+}
+.message {
+  text-align: center;
+  width: 100%;
+  border: 0.1rem solid var(--primary-orange);
+  background-color: var(--secondary-black);
+  padding: 1rem;
+}
+
+form {
+  border: 0.15rem solid var(--primary-orange);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.form-big {
+  width: 60%;
+}
+
+.form-little {
+  width: 30%;
+}
+
+.btn_color {
+  background-color: var(--secondary-orange);
+}
+
+.btn_color_alt {
+  background-color: var(--secondary-grey);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   header                                   */
+/* -------------------------------------------------------------------------- */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  width: 100%;
+  border-bottom: 0.1rem solid var(--primary-orange);
+}
+
+.logo-wrapper {
+  width: 8rem;
+  min-width: 8rem;
+  display: flex;
+}
+
+.logo {
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0 1rem;
+  margin-bottom: 0;
+  align-items: center;
+  justify-content: right;
+}
+
+.actualView {
+  background-color: rgba(138, 137, 137, 0.212);
+}
+
+header nav ul li {
+  text-align: center;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.4rem;
+  min-width: 5rem;
+  font-size: 1.15rem;
+  min-width: 7.5rem;
+  text-wrap: nowrap;
+}
+
+header nav ul li:hover {
+  background-color: rgba(138, 137, 137, 0.212);
+  cursor: pointer;
+}
+header nav ul li:hover a {
+  color: var(--secondary-orange);
+}
+
+.logout {
+  border: 0.2rem solid var(--primary-white);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.7rem;
+}
+
+.logout:hover a {
+  color: var(--secondary-orange);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    main                                    */
+/* -------------------------------------------------------------------------- */
+
+.pageStructure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 2rem;
+}
+
+.page-title {
+  align-self: flex-start;
+  font-size: 3rem;
+}
+
+h3 {
+  color: var(--secondary-orange);
+}
+
+.alternativ-link {
+  margin-left: 0.3rem;
+  font-weight: 900;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  background-color: var(--secondary-orange);
+  color: var(--primary-grey);
+  transition: 0.5s;
+}
+
+.alternativ-link:hover {
+  background-color: transparent;
+  color: var(--secondary-orange);
+  transition: 0.5s;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   footer                                   */
+/* -------------------------------------------------------------------------- */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 2rem;
+  border-top: 0.1rem solid var(--primary-orange);
+}
+
+.contactData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  gap: 0.1rem;
+  padding: 1rem;
+}
+
+.contactData p {
+  margin: 0;
+}

@@ -1,0 +1,13 @@
+table tr:nth-child(odd) {
+  background-color: var(
+    --pirmary-grey
+  );
+  /* Hellgrau für gerade Spaltenüberschriften */
+}
+
+table tr:nth-child(even) {
+  background-color: var(
+    --secondary-grey
+  );
+  /* Weiß für ungerade Spaltenüberschriften */
+}

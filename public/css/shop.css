@@ -1,0 +1,9 @@
+.productCardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+  grid-gap: 1.3rem;
+  max-width: 90rem; /* Maximale Breite des Rasters */
+  margin: 0 auto; /* Zentriert das Raster auf der Seite */
+  padding: 1rem;
+  list-style: none;
+}

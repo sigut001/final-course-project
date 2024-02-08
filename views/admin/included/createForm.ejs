@@ -1,0 +1,123 @@
+<form
+  id="form"
+  class="form-big"
+  action="<%= projectPath.routPath.admin.post.createProduct %>?_csrf=<%= locals.csrf %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div class="mb-3">
+    <label for="title" class="form-label">Titel</label>
+    <input
+      value="Beispieltitel"
+      type="title"
+      class="form-control"
+      name="title"
+      id="title"
+      maxlength="20"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="summary" class="form-label">Zusammenfassung</label>
+    <input
+      value="Ein Beispiel für eine Zusammenfassung"
+      maxlength="75"
+      type="summary"
+      class="form-control"
+      name="summary"
+      id="summary"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Upload Image</label>
+    <input
+      type="file"
+      class="form-control"
+      name="image"
+      id="image"
+      accept="image/png, image/jpg"
+      required
+    />
+  </div>
+  <div class="flex flex-col gap-1 items-start pb-2">
+    <label for="discription" class="form-label">Beschreibung</label>
+    <textarea
+      class="w-full rounded-lg p-2"
+      name="discription"
+      id="discription"
+      cols="30"
+      rows="6"
+    >
+      Ein Beispieltext der Beschreibt wie toll das Produkt ist
+
+  </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Preis in €</label>
+    <input
+      type="number"
+      value="30"
+      class="form-control"
+      name="price"
+      id="price"
+      min="0.01"
+      step="0.01"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <div class="form-select-container">
+      <label for="status">aktuelle Verfügbarkeit</label>
+      <select name="status" id="status">
+        <option selected value="verfügbar">verfügbar</option>
+        <option value="fastAusverkauft">fast ausverkauft</option>
+        <option value="ausverkauft">ausverkauft</option>
+      </select>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-select-container">
+      <label for="sale">Sale aktivieren?</label>
+      <select name="sale" id="sale">
+        <option selected value="false">deaktiviert</option>
+        <option value="true">aktiviert</option>
+      </select>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-select-container">
+      <label for="discountShow">Rabatte</label>
+      <select disabled name="discountShow" id="discountShow">
+        <option selected value="keinRabatt">Kein Rabatt</option>
+        <option value="5">-5%</option>
+        <option value="10">-10%</option>
+        <option value="15">-15%</option>
+        <option value="20">-20%</option>
+        <option value="25">-25%</option>
+        <option value="50">-50%</option>
+      </select>
+      <select hidden name="discount" id="discount">
+        <option selected value="keinRabatt">Kein Rabatt</option>
+        <option value="5">-5%</option>
+        <option value="10">-10%</option>
+        <option value="15">-15%</option>
+        <option value="20">-20%</option>
+        <option value="25">-25%</option>
+        <option value="50">-50%</option>
+      </select>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-select-container">
+      <label for="salePrice">Sale-Price</label>
+      <input name="salePrice" id="salePrice" type="text" readonly />
+    </div>
+  </div>
+
+  <div class="flex flex-row gap-2 justify-end pt-3">
+    <button id="resetBtn" type="reset" class="btn btn_color_alt">Reset</button>
+    <button type="submit" class="btn btn_color">Submit</button>
+  </div>
+  <%- include('../../../' + projectPath.viewPath.included.csrf) %>
+</form>

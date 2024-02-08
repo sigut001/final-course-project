@@ -1,0 +1,39 @@
+<article class="productCard">
+  <img
+    id="dummyimage"
+    class="productCardImage"
+    src="<%= product.url %>"
+    alt="<%= product.title %>"
+  />
+  <% if (product.status === "verfügbar") { %>
+  <div class="productCardStatus">
+    <p id="dummyproductstatus" class="verfügbar">auf Lager</p>
+  </div>
+  <% } else if (product.status === "fast-ausverkauft") { %>
+  <div class="productCardStatus">
+    <p id="dummyproductstatus" class="fast-ausverkauft">fast ausverkauft</p>
+  </div>
+  <% } else if (product.status === "ausverkauft") { %>
+  <div class="productCardStatus">
+    <p id="dummyproductstatus" class="ausverkauft">ausverkauft</p>
+  </div>
+  <% } %>
+  <div class="productCardBody">
+    <div class="w-full">
+      <h2 id="dummytitle" class="productCardTitle"><%= product.title %></h2>
+    </div>
+
+    <div class="w-full">
+      <h4 class="productCardPrice">
+        <span>Preis: </span><span id="dummyprice"><%= product.price %></span
+        ><span>€</span>
+      </h4>
+    </div>
+    <div class="mt-3 flex flex-row gap-2 justify-end w-full">
+      <button class="btn btn_color c-primary-black">View & Edit</button>
+      <button class="btn btn_color_alt" data-_id="<%= product._id%>">
+        Delete
+      </button>
+    </div>
+  </div>
+</article>

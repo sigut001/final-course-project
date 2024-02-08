@@ -1,0 +1,151 @@
+/* Stilregeln für mobile Geräte (Portrait) */
+@media (max-width: 767px) {
+  .mobile {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+  /* Hier kommen die Anpassungen für mobile Geräte im Portrait-Modus */
+  header {
+    position: fixed;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+    padding: 0;
+    border-bottom: 0.1rem solid var(--primary-orange);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 3rem;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary-black);
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 3rem;
+    height: 3rem;
+    padding-right: 0.5rem;
+  }
+
+  .logo-wrapper {
+    display: flex;
+  }
+
+  header nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.15rem;
+    margin-bottom: 0;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--secondary-black);
+  }
+
+  .actualView {
+    border-left: 0.2rem solid var(--secondary-orange);
+  }
+
+  header nav ul li {
+    text-align: center;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.15rem;
+  }
+
+  header nav ul li:hover a {
+    color: var(--primary-white);
+  }
+
+  .logout {
+    border: 0.2rem solid var(--primary-white);
+    background-color: var(--secondary-black);
+    padding: 0.5rem 0.7rem;
+  }
+
+  .logout:hover a {
+    color: var(--secondary-orange);
+  }
+
+  /* Mobile */
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  main {
+    position: relative;
+    top: 3rem;
+    z-index: 10;
+  }
+}
+
+/* Stilregeln für mobile Geräte (Landscape) */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Hier kommen die Anpassungen für mobile Geräte im Landscape-Modus */
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: flex;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+/* Stilregeln für iPads im Hochformat (Portrait) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Hier kommen die Anpassungen für iPads im Hochformat */
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: flex;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+/* Stilregeln für iPads im Querformat (Landscape) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Hier kommen die Anpassungen für iPads im Querformat */
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: flex;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+/* Stilregeln für Desktop-Bildschirme */
+@media (min-width: 1280px) {
+  /* Hier kommen die Stilregeln für Desktop-Bildschirme */
+
+  .desktop {
+    display: flex;
+  }
+  .tablet {
+    display: none;
+  }
+  .mobile {
+    display: none;
+  }
+}

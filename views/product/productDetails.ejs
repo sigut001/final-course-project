@@ -1,0 +1,61 @@
+<%- include("../../"+locals.projectPath.viewPath.included.head) %>
+    <script src="/js/product/product.js" defer></script>
+
+</head>
+<body>
+<%- include("../../"+locals.projectPath.viewPath.included.header.header) %>
+<main class="pageStructure">
+  <section class="flex gap-2 align-top p-4 c-primary-white">
+    <div class="image-container w-1/2 p-4 flex justify-center items-center bg-[rgb(34,32,32)] rounded-lg ">
+      <img src="<%= product.url %>" alt="Produktbild">
+    </div>
+    <div class="text-body-container w-1/2 flex flex-col p-4">
+      <div class="w-full flex flex-col gap-2 pl-2">
+        <p class="c-secondary-grey">Old Stuff</p>
+        <h1 class="text-7xl pb-3"><%= product.title  %></h1>
+      </div>
+     
+      <% if (product.sale !== "false"){ %>
+      <div class="price-container">
+        <div class="sale flex items-center gap-3 p-3">
+          <p class="text-2xl p-2 rounded-md bg-[rgb(238,131,0)]"><span><%= product.discount %></span><span> % Sale</span></p>
+          <p class="text-2xl line-through decoration-[rgb(238,131,0)]"><span class="productCardPrice"><%= product.price %></span><span> €/Stk.</span></p>
+          <p class="text-2xl"><span class="productCardSalePrice"><%= product.salePrice %></span><span> €/Stk.</span></p>
+        </div>
+      </div>
+      <% } else { %>
+      <div class="price-container p-3" >
+        <p class="text-3xl"><span class="productCardPrice"><%= product.price  %></span><span> €/Stk.</span></p>
+      </div>
+      <% } %>
+        <p class="pl-4 text-nowrap">Inkl. Mehrwertsteuer zuzüglich <a href="">Versandkosten</a></p>
+
+     
+      <div class="number-container p-3 flex w-full justify-start gap-4 items-center">
+        <form class="border-none w-full flex justify-evenly items-center" action="<%= locals.projectPath.routPath.costumer.post.addToCart  %>" method="POST">
+          <div >
+            <input required value=1 placeholder="Anzahl" name="productNumber" class="font-bold text-center p-2 rounded-md text-orange-400 " type="number" min="1" step="1">
+          </div>
+            <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="productTitle" value="<%= product.title %>">
+          <input type="hidden" name="productSale" value="<%= product.sale %>">
+          <input type="hidden" name="productDiscount" value="<%= product.discount %>">
+          <input type="hidden" name="productPrice" value="<%= product.price %>">
+          <div class="bezahlen-container p-3 flex flex-col w-full gap-2">
+            <button type="submit" class="btn btn_color  hover:text-[rgb(238,131,0)]">Add to Cart</button>
+          </div>
+        <%- include('../../' + projectPath.viewPath.included.csrf) %>
+        </form>
+        </div>
+      
+      <div class="discription p-3">
+        <h2 class="pb-1">Produktbeschreibung:</h2>
+        <p class="text-2xl"><%= product.discription  %></p>
+      </div>
+      
+    </div>
+  </section>
+</main>
+<%- include("../../" + locals.projectPath.viewPath.included.footer) %>
+</body>
+</html>

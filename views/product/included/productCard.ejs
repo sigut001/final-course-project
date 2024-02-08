@@ -1,0 +1,67 @@
+<article class="productCard">
+  <img
+    class="productCardImage"
+    src="<%= product.url %>"
+    alt="<%= product.title %>"
+  />
+  <div class="productCardIconContainer">
+    <% switch (product.status) {case "fastAusverkauft": %>
+    <p id="productCardStatus" class="fastAusverkauft">fast ausverkauft</p>
+    <%break; case "ausverkauft": %>
+    <p id="productCardStatus" class="ausverkauft">ausverkauft</p>
+    <%break; case "undeifined": %>
+    <p id="productCardStatus" class="verfügbar">verfügbar</p>
+    <% break; default: %>
+    <p id="productCardStatus" class="verfügbar">verfügbar</p>
+    <% } if (product.sale === "true") { %>
+    <p id="productCardDiscount" class="productCardDiscount">
+      -<%= product.discount %>%
+    </p>
+    <% } %>
+  </div>
+  <div class="productCardBody">
+    <div class="w-full">
+      <h2 class="productCardTitle"><%= product.title %></h2>
+    </div>
+    <div class="w-full">
+      <h4 class="productCardPriceContainer">
+        <% if (product.sale === "false") { %>
+        <span class="productCardPrice" id="productCardPrice"
+          ><%= product.price %></span
+        ><span> €</span>
+        <% } else if (product.sale === "true") {%>
+        <span class="line-through productCardPrice" id="productCardPrice"
+          ><%= product.price %></span
+        ><span> €</span>
+        <span class="productCardSalePrice" id="productCardSalePrice"
+          ><%= product.salePrice %></span
+        ><span> €</span>
+        <% } %>
+      </h4>
+    </div>
+    <div class="mt-3 flex flex-row gap-2 justify-end w-full">
+      <button class="btn btn_color_alt c-primary-black">
+        <a
+          href="<%= locals.projectPath.routPath.product.get.singleProduct.replace(':_id', product._id) %>"
+          >Zum Produkt</a
+        >
+      </button>
+      <button class="btn btn_color" data-_id="<%= product._id %>">
+        <svg
+          class="h-full"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</article>

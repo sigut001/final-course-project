@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
+  </head>
+  <body>
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+    {page}) %>
+    <main class="pageStructure">
+      <h1 class="page-title">Sign Up</h1>
+      <%- include('../../' + locals.projectPath.viewPath.included.message) %> <%
+      if (locals.signUpData) { %>
+      <form
+        class="form-big"
+        method="POST"
+        action="<%= locals.projectPath.routPath.auth.post.signUp %>"
+      >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            value="<%= locals.signUpData.email %>"
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmEmail" class="form-label"
+            >Confirm Email address</label
+          >
+          <input
+            value="<%= locals.signUpData.confirmEmail %>"
+            type="email"
+            class="form-control"
+            name="confirmEmail"
+            id="confirmEmail"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            minlength="6"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm your Password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            id="confirmPassword"
+            minlength="6"
+            required
+          />
+        </div>
+        <hr />
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            value="<%= locals.signUpData.firstName %>"
+            type="text"
+            class="form-control"
+            name="firstName"
+            id="firstName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last name</label>
+          <input
+            value="<%= locals.signUpData.lastName %>"
+            type="text"
+            class="form-control"
+            name="lastName"
+            id="lastName"
+            required
+          />
+        </div>
+        <hr />
+        <div class="mb-3">
+          <label for="street" class="form-label">Street</label>
+          <input
+            value="<%= locals.signUpData.street %>"
+            type="text"
+            class="form-control"
+            name="street"
+            id="street"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="houseNumber" class="form-label">House Number</label>
+          <input
+            value="<%= locals.signUpData.houseNumber %>"
+            type="text"
+            class="form-control"
+            name="houseNumber"
+            id="houseNumber"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input
+            value="<%= locals.signUpData.city %>"
+            type="text"
+            class="form-control"
+            name="city"
+            id="city"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="plz" class="form-label">PLZ</label>
+          <input
+            value="<%= locals.signUpData.plz %>"
+            type="text"
+            class="form-control"
+            name="plz"
+            id="plz"
+            minlength="5"
+            maxlength="5"
+            required
+          />
+        </div>
+        <%- include('../../' + locals.projectPath.viewPath.included.csrf) %>
+        <button type="submit" class="btn btn_color">Submit</button>
+      </form>
+      <p>
+        Sie haben bereits ein Konto ?
+        <a
+          href="<%= locals.projectPath.routPath.auth.get.logIn %>"
+          class="alternativ-link"
+          >Log in</a
+        >
+      </p>
+      <% } else { %>
+      <form
+        class="form-big"
+        method="POST"
+        action="<%= locals.projectPath.routPath.auth.post.signUp %>"
+      >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmEmail" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="confirmEmail"
+            id="confirmEmail"
+            aria-describedby="emailHelp"
+            required
+          />
+          <div id="emailHelp" class="form-text text-zinc-300">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            minlength="6"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm your Password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            id="confirmPassword"
+            minlength="6"
+            required
+          />
+        </div>
+
+        <hr />
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            id="firstName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            id="lastName"
+            required
+          />
+        </div>
+
+        <hr />
+
+        <div class="mb-3">
+          <label for="street" class="form-label">Street</label>
+          <input
+            type="text"
+            class="form-control"
+            name="street"
+            id="street"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="houseNumber" class="form-label">House Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="houseNumber"
+            id="houseNumber"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input
+            type="text"
+            class="form-control"
+            name="city"
+            id="city"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="plz" class="form-label">PLZ</label>
+          <input
+            type="text"
+            class="form-control"
+            name="plz"
+            id="plz"
+            minlength="5"
+            maxlength="5"
+            required
+          />
+        </div>
+
+        <%- include('../../' + locals.projectPath.viewPath.included.csrf) %>
+        <button type="submit" class="btn btn_color">Submit</button>
+      </form>
+      <p>
+        Sie haben bereits ein Konto?
+        <a
+          class="alternativ-link"
+          href="<%= locals.projectPath.routPath.auth.get.logIn %>"
+          >Log in</a
+        >
+      </p>
+      <% } %>
+    </main>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

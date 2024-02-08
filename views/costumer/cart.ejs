@@ -1,0 +1,20 @@
+
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
+    <script src="/js/costumer/cart.js" defer></script>
+  </head>
+  <body>
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header)
+    %>
+    <main class="pageStructure">
+      <h1 class="page-title">Warenkorb</h1>
+      <section class="cart">   
+        <% if (locals.cart.length > 0) { %>
+        <%- include("../../" + locals.projectPath.viewPath.costumer.included.cartTable)  %>  
+        <% } else{ %>
+          <p>Dein Warenkorb ist leer. Hier gehts zu den  <a class="btn btn_color" href="<%= locals.projectPath.routPath.basic.get.default %>">Produkten</a></p>
+          <% } %>
+      </section>
+    </main>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

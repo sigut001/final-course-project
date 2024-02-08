@@ -1,0 +1,76 @@
+<table id="cartTable">
+  <thead>
+    <tr class="text-center text-3xl">
+      <th class="p-2 text-left">Produkt</th>
+      <th class="p-2">Preis</th>
+      <th class="p-2">Anzahl</th>
+      <th class="p-2">Rabatt</th>
+      <th class="p-2">Gesamtpreis</th>
+      <th class="p-2">Ersparnis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- In dieser Tabelle werden nur der Preis, Rabatt, Anzahl(input), Totalpreis(berechnet) und Erspaarnis(berechnet) angezeigt -->
+    <% locals.cart.forEach(function(item) { %>
+    <tr
+      class="cartItem text-center text-xl border-b-2 border-solid border-[rgb(238,131,0)] p-2"
+    >
+      <td class="text-left p-3">
+        <span class="title"><%= item.title %></span>
+      </td>
+      <td class="p-3">
+        <span class="price"><%= item.price %></span><span> €</span>
+      </td>
+      <td class="p-3">
+        <input
+          class="w-auto text-center text-[black] number"
+          type="number"
+          min="0"
+          step="1"
+          name="cartProductNumber"
+          value="<%= item.number  %>"
+        />
+      </td>
+      <td class="p-3">
+        <span class="discount"
+          ><%= item.sale==="true" ? item.discount : '-' %></span
+        >
+        <span class="discount-unit"><%= item.sale==="true" ? '%' : '' %></span>
+      </td>
+      <td class="p-3"><span class="totalPrice"></span><span> €</span></td>
+      <td
+        class="p-3 meta-data"
+        data-product_id ="<%= item.product_id %>"
+        data-title ="<%= item.title  %>"
+        data-number="<%= item.number %>"
+        data-price="<%= item.price %>"
+        data-sale="<%=item.sale%>"
+        data-discount="<%=item.discount%>"
+        data-cartitem_id = <%= item._id  %>
+
+        >
+         <span class="savings"></span><span class=""> €</span>
+      </td>
+      <td>
+    <button  class="btn btn_color_alt removeCartItem text-[rgb(238,131,0)]">Artikel löschen</button>
+
+      </td>
+    </tr>
+
+    <% }) %>
+  </tbody>
+</table>
+<div id="priceOverview" class="flex gap-3 justify-end p-4">
+  <div class="flex flex-col">
+    <p class="text-2xl">Gesamtpreis:</p>
+    <span class="text-2xl text-right" id="totalCost"></span>
+  </div>
+  <div class="flex flex-col">
+    <p class="text-2xl">Gesamtersparnis:</p>
+    <span class="text-2xl text-right" id="totalSavings"></span>
+  </div>
+  <div>
+    <button data-csrf="<%= locals.csrf %>" type="submit" class="btn_color btn" id="submitOrderButton">Kostenpflichtig Bestellen</button>
+  </div>
+</div>
+

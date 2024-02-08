@@ -1,0 +1,11 @@
+:root {
+  --primary-white: rgb(240, 240, 240);
+  --primary-black: rgb(30, 30, 30);
+  --primary-grey: rgb(34, 32, 32);
+  --primary-orange: #ee8300;
+
+  --secondary-white: rgb(229, 229, 229);
+  --secondary-black: rgb(43, 42, 42);
+  --secondary-grey: rgb(93, 86, 86);
+  --secondary-orange: rgb(255, 175, 77);
+}

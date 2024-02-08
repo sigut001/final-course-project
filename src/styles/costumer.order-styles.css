@@ -1,0 +1,101 @@
+.orderList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.orders {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.order {
+  background-color: var(--secondary-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  border: 0.15rem solid var(--primary-orange);
+  border-radius: 0.2rem;
+  color: var(--primary-orange);
+  width: 100%;
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.date {
+  color: var(--primary-orange);
+}
+
+.orderStatus {
+  background-color: var(--primary-orange);
+  color: var(--primary-black);
+  border-radius: 1rem;
+  height: 100%;
+  padding: 0.2rem 0.5rem;
+}
+
+.title {
+  color: var(--primary-white);
+  font-size: 1rem;
+}
+
+.totalAmmount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.3rem;
+}
+
+.productsOverview {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.productOrder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 0.05rem solid var(--primary-white);
+  border-radius: 0.2rem;
+}
+
+.prices {
+  color: var(--primary-white);
+}
+
+.price-DOLLAR {
+  color: var(--secondary-grey);
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prices {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: flex-start;
+}

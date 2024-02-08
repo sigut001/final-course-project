@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
+  </head>
+  <body>
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+    {page}) %>
+    <main class="flex justify-center items-center flex-col gap-4">
+      <h1>
+        Für diese Funktion müssen sie angemeldet sein.
+      </h1>
+
+      <p>
+        Sie haben bereits ein Konto ?
+        <a
+          href="<%= locals.projectPath.routPath.auth.get.logIn %>"
+          class="alternativ-link"
+          >Log in</a
+        >
+      </p>
+      <p>
+        Sie haben noch kein Konto?
+        <a
+          class="alternativ-link"
+          href="<%= projectPath.routPath.auth.get.signUp %>"
+          >Sign up</a
+        >
+      </p>
+
+      <p>zurück zur <a class="btn btn_color" href="/">Startseite</a></p>
+    </main>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

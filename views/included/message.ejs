@@ -1,0 +1,9 @@
+<% if(locals.message && locals.message.length > 0) { %>
+<div class="messages-window">
+  <% for(let i = 0; i < locals.message.length; i++) { %>
+  <div class="message">
+    <p><%= locals.message[i] %></p>
+  </div>
+  <% } %>
+</div>
+<% } %>
