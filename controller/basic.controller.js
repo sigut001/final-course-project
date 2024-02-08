@@ -1,16 +1,38 @@
 const Product = require("../models/product.model");
+const { routPath, viewPath } = require("../util/projektPath");
 
 function getHomepage(req, res, next) {
-  res.redirect("/products");
+  res.redirect(routPath.product.get.allProducts);
 }
 
 function get500(req, res, next) {
-  res.render("../views/base/500.ejs", {
+  res.status(500).render("../" + viewPath.base.e500, {
     page: { title: "Server Error", nav: "get500" },
   });
 }
 
+function get404(req, res) {
+  res.status(404).render("../" + viewPath.base.e404, {
+    page: { title: "Seite nicht gefunden", nav: "get404" },
+  });
+}
+
+function get403(req, res) {
+  res.status(403).render("../" + viewPath.base.e403, {
+    page: { title: "Keine Zugriffsrechte, Admin", nav: "get403" },
+  });
+}
+
+function get401(req, res) {
+  res.status(401).render("../" + viewPath.base.e401, {
+    page: { title: "Keine Zugriffsrechte, User", nav: "get401" },
+  });
+}
+
 module.exports = {
-  getHomepage: getHomepage,
-  get500: get500,
+  getHomepage,
+  get500,
+  get404,
+  get403,
+  get401,
 };

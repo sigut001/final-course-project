@@ -1,25 +1,26 @@
 <form
   id="form"
   class="form-big"
-  action="/admin-create-products?_csrf=<%= locals.csrf %>"
+  action="<%= projectPath.routPath.admin.post.createProduct %>?_csrf=<%= locals.csrf %>"
   method="POST"
   enctype="multipart/form-data"
 >
   <div class="mb-3">
     <label for="title" class="form-label">Titel</label>
     <input
-      placeholder="Beispieltitel"
+      value="Beispieltitel"
       type="title"
       class="form-control"
       name="title"
       id="title"
+      maxlength="20"
       required
     />
   </div>
   <div class="mb-3">
     <label for="summary" class="form-label">Zusammenfassung</label>
     <input
-      placeholder="Ein Beispiel für eine Zusammenfassung"
+      value="Ein Beispiel für eine Zusammenfassung"
       maxlength="75"
       type="summary"
       class="form-control"
@@ -42,19 +43,21 @@
   <div class="flex flex-col gap-1 items-start pb-2">
     <label for="discription" class="form-label">Beschreibung</label>
     <textarea
-      placeholder="Ein Beispieltext der Beschreibt wie toll das Produkt ist"
       class="w-full rounded-lg p-2"
       name="discription"
       id="discription"
       cols="30"
       rows="6"
-    ></textarea>
+    >
+      Ein Beispieltext der Beschreibt wie toll das Produkt ist
+
+  </textarea>
   </div>
   <div class="mb-3">
     <label for="price" class="form-label">Preis in €</label>
     <input
       type="number"
-      value=""
+      value="30"
       class="form-control"
       name="price"
       id="price"
@@ -95,7 +98,7 @@
         <option value="50">-50%</option>
       </select>
       <select hidden name="discount" id="discount">
-        <option selected value="">Kein Rabatt</option>
+        <option selected value="keinRabatt">Kein Rabatt</option>
         <option value="5">-5%</option>
         <option value="10">-10%</option>
         <option value="15">-15%</option>
@@ -108,8 +111,7 @@
   <div class="mb-3">
     <div class="form-select-container">
       <label for="salePrice">Sale-Price</label>
-      <input id="salePriceShow" type="text" disabled />
-      <input name="salePrice" id="salePrice" type="number" hidden />
+      <input name="salePrice" id="salePrice" type="text" readonly />
     </div>
   </div>
 
@@ -117,5 +119,5 @@
     <button id="resetBtn" type="reset" class="btn btn_color_alt">Reset</button>
     <button type="submit" class="btn btn_color">Submit</button>
   </div>
-  <%- include("../../included/csrf.ejs") %>
+  <%- include('../../../' + projectPath.viewPath.included.csrf) %>
 </form>

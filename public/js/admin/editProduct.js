@@ -8,8 +8,7 @@ let formStatus = document.getElementById("status");
 let formSale = document.getElementById("sale");
 let formHiddenDiscount = document.getElementById("discount");
 let formShownDiscount = document.getElementById("discountShow");
-let formHiddenSalePrice = document.getElementById("salePrice");
-let formShownSalePrice = document.getElementById("salePriceShow");
+let formSalePrice = document.getElementById("salePrice");
 
 let dummyTitle = document.getElementById("dummyTitle");
 let dummyIconContainer = document.querySelector(".dummyIconContainer");
@@ -22,9 +21,6 @@ let dummySalePrice = document.getElementById("dummySalePrice");
 /* -------------------------------------------------------------------------- */
 /*                                 Funktionen für das Formular                */
 /* -------------------------------------------------------------------------- */
-function transmitInput(formElement, dummyElement) {
-  dummyElement.innerText = formElement.value;
-}
 
 function createAndShowSaleData() {
   // Es soll nur ausgeführt werden, wenn sale aktiviert, ein Preis und ein Rabtt exsistiert
@@ -34,9 +30,8 @@ function createAndShowSaleData() {
 
     // Verknüpfen der Unsichtbaren mit den Sichtbaren Feldern
     formHiddenDiscount.value = formShownDiscount.value;
-    formShownSalePrice.value =
-      (1 - formShownDiscount.value / 100) * formPrice.value;
-    formHiddenSalePrice.value = formShownSalePrice.value;
+    let dezi = (1 - formShownDiscount.value / 100) * formPrice.value;
+    formSalePrice.value = +parseFloat(dezi.toFixed(2));
 
     if (document.getElementById("dummyDiscount")) {
       document.getElementById("dummyDiscount").remove();
@@ -54,7 +49,7 @@ function createAndShowSaleData() {
     let dummySalePriceNew = document.createElement("span");
     dummySalePriceNew.id = "dummySalePrice";
     dummySalePriceNew.classList.add("productCardPrice");
-    dummySalePriceNew.innerText = "nur " + formHiddenSalePrice.value + "€";
+    dummySalePriceNew.innerText = "nur " + formSalePrice.value + "€";
     dummyPriceContainer.appendChild(dummySalePriceNew);
 
     dummyPrice.style.textDecoration = "line-through";
@@ -64,8 +59,7 @@ function createAndShowSaleData() {
 function removeSaleData() {
   // Wenn Sale aktiviert wurde und ein Discount eingestellt wurde, wird der Salepreis berechnet und ins ShowElement eingefügt.
   if (formSale.value === "false") {
-    formHiddenSalePrice.value = "";
-    formShownSalePrice.value = "";
+    formSalePrice.value = "";
     formHiddenDiscount.value = "keinRabatt";
     formShownDiscount.value = "keinRabatt";
     formShownDiscount.disabled = true;
@@ -90,8 +84,11 @@ function removeSaleData() {
 // Wenn die Seite neugeladen wird, sollen die Werte aus dem Formular (title, price, status) übertragen werden.
 // Zusätzlich soll im Falle (sale&&discount&&salePrice) auch die salesObjekte für den Dummy erzeugt werden
 document.addEventListener("DOMContentLoaded", function () {
-  transmitInput(formTitle, dummyTitle);
-  transmitInput(formPrice, dummyPrice);
+  let dezi = +formPrice.value;
+  let dezimalPrice = dezi.toFixed(2);
+  dummyTitle.innerText = formTitle.value;
+  dummyPrice.innerText = dezimalPrice;
+
   dummyStatus.innerText = formStatus.text;
 
   switch (formStatus.value) {
@@ -118,11 +115,15 @@ document.addEventListener("DOMContentLoaded", function () {
 resetBtn.addEventListener("click", function (event) {
   removeSaleData();
   formShownDiscount.disabled = "true";
+  formShownDiscount.style.backgroundColor = "";
+
   event.preventDefault();
   form.reset();
 
-  transmitInput(formTitle, dummyTitle);
-  transmitInput(formPrice, dummyPrice);
+  let dezi = +formPrice.value;
+  let dezimalPrice = dezi.toFixed(2);
+  dummyTitle.innerText = formTitle.value;
+  dummyPrice.innerText = dezimalPrice;
   dummyStatus.innerText = formStatus.text;
 
   switch (formStatus.value) {
@@ -147,7 +148,7 @@ resetBtn.addEventListener("click", function (event) {
 });
 
 formTitle.addEventListener("input", (event) => {
-  transmitInput(formTitle, dummyTitle);
+  dummyTitle.innerText = formTitle.value;
 });
 
 formImage.addEventListener("change", function (event) {
@@ -167,7 +168,9 @@ formImage.addEventListener("change", function (event) {
 });
 
 formPrice.addEventListener("input", (event) => {
-  transmitInput(formPrice, dummyPrice);
+  let dezi = +formPrice.value;
+  let dezimalPrice = dezi.toFixed(2);
+  dummyPrice.innerText = dezimalPrice;
   createAndShowSaleData();
 });
 
@@ -194,16 +197,34 @@ formStatus.addEventListener("change", (event) => {
 formSale.addEventListener("change", function (event) {
   if (formSale.value === "true") {
     formShownDiscount.disabled = false;
+    formShownDiscount.style.backgroundColor = "";
     createAndShowSaleData();
   } else if (formSale.value === "false") {
     removeSaleData();
     formShownDiscount.disabled = "true";
   }
 });
+
 formShownDiscount.addEventListener("change", function (event) {
   if (formSale.value) {
     createAndShowSaleData();
   } else {
     removeSaleData();
+  }
+});
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (
+    (formSale.value === "false" && formShownDiscount.value === "keinRabatt") ||
+    (formSale.value === "true" &&
+      ["5", "10", "15", "20", "25", "50"].includes(formShownDiscount.value))
+  ) {
+    form.submit();
+  } else {
+    console.log("Ein Fehler beim Sale/Discount");
+  }
+  if (formSale.value === "true" && formShownDiscount.value === "keinRabatt") {
+    formShownDiscount.style.backgroundColor = "red";
   }
 });

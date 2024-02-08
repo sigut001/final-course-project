@@ -1,8 +1,8 @@
 const Product = require("../models/product.model");
 const { validationResult } = require("express-validator");
 const authentification = require("../util/authentication");
-
-const { viewPath } = require("../util/projektPath");
+const { routPath, viewPath } = require("../util/projektPath");
+const Order = require("../models/order.model");
 
 /* -------------------------------------------------------------------------- */
 /*                                     GET                                    */
@@ -12,7 +12,7 @@ async function getProducts(req, res, next) {
   try {
     const productArray = await Product.findAll();
 
-    res.render("../views/admin/productManagement.ejs", {
+    res.render("../" + viewPath.admin.productManagement, {
       page: { title: "Product-Management", nav: "productManagement" },
       productArray,
     });
@@ -22,7 +22,7 @@ async function getProducts(req, res, next) {
 }
 
 function getCreateProducts(req, res, next) {
-  res.render("../views/admin/createProducts.ejs", {
+  res.render("../" + viewPath.admin.createProduct, {
     page: { title: "Create Products", nav: "getCreateProducts" },
   });
 }
@@ -36,35 +36,55 @@ async function getEditProduct(req, res, next) {
   } catch (err) {
     next(err);
   }
-  console.log(product);
 
-  res.render("../views/admin/edit-product.ejs", {
+  res.render("../" + viewPath.admin.editProduct, {
     page: { title: "Edit Product", nav: "getEditProduct" },
     product,
   });
 }
 
-function getViewAdminOrders(req, res, next) {
-  res.render("../views/admin/view-admin-orders.ejs", {
-    page: { title: "View Orders", nav: "getViewAdminOrders" },
+async function getOrders(req, res, next) {
+  const orders = await Order.findAll();
+  console.log("Hier kommen die Orders:", orders);
+  res.render("../" + viewPath.admin.managementOrders, {
+    page: { title: "View Orders", nav: "getOrders", orders: orders },
   });
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                    POST                                    */
 /* -------------------------------------------------------------------------- */
+
 async function postCreateProducts(req, res, next) {
-  // Prüfung 1: Valide Nutzereingaben
+  // Validierung von Titel, Summary, Discription und Price
   const errors = validationResult(req);
   console.log(errors);
   if (!errors.isEmpty()) {
     authentification.messageToSession(req, errors.array());
-    return res.redirect("/admin-create-products");
+    return res.redirect(routPath.admin.post.createProduct);
   }
 
+  // Validierung das ein Bild hochgeladen wurde
   if (!req.file) {
     authentification.messageToSession(req, null, "Produktbild fehlt!");
-    return res.redirect("/admin-create-products");
+    return res.redirect(routPath.admin.post.createProduct);
+  }
+
+  // Validierung ob valide sale angeben
+  if (!["true", "false"].includes(req.body.sale)) {
+    authentification.messageToSession(req, null, "invalide Salesdaten");
+    return res.redirect(routPath.admin.post.createProduct);
+  }
+
+  // Validierung Ob zur aktivierug von sale auch ein discount ausgewählt wurde
+  if (
+    req.body.sale === "true" &&
+    !["keinRabatt", "5", "10", "15", "20", "25", "50"].includes(
+      req.body.discount
+    )
+  ) {
+    authentification.messageToSession(req, null, "Invaldie Discountdaten");
+    return res.redirect(routPath.admin.post.createProduct);
   }
 
   const productParams = {
@@ -82,18 +102,35 @@ async function postCreateProducts(req, res, next) {
   const newProduct = new Product(productParams);
   await newProduct.save();
 
-  res.redirect("/getProducts");
+  res.redirect(routPath.admin.get.productManagement);
 }
 
 async function postEditProduct(req, res, next) {
   const _id = req.params._id;
-  // Prüfung 1: Valide Nutzereingaben
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     authentification.messageToSession(req, errors.array());
-    return res.redirect("/admin-edit-product/_id");
+    return res.redirect(routPath.admin.post.editProduct.replace(":_id", _id));
   }
 
+  // Validierung ob valide sale angeben
+  if (!["true", "false"].includes(req.body.sale)) {
+    authentification.messageToSession(req, null, "invalide Salesdaten");
+    return res.redirect(routPath.admin.post.createProduct);
+  }
+
+  // Validierung Ob zur aktivierug von sale auch ein discount ausgewählt wurde
+  if (
+    req.body.sale === "true" &&
+    !["keinRabatt", "5", "10", "15", "20", "25", "50"].includes(
+      req.body.discount
+    )
+  ) {
+    authentification.messageToSession(req, null, "Invaldie Discountdaten");
+    return res.redirect(routPath.admin.post.createProduct);
+  }
+
+  // Unterscheidung ob ein neues Bild hochgeladen wurde
   let productData;
   if (req.file) {
     productData = {
@@ -106,9 +143,10 @@ async function postEditProduct(req, res, next) {
     };
   }
 
-  console.log(productData);
+  console.log("vorm Updaten, Daten: ", productData);
+
   await Product.update(_id, productData);
-  res.redirect("/admin-get-products");
+  res.redirect(routPath.admin.get.productManagement);
 }
 
 async function postDeleteProducts(req, res, next) {
@@ -117,32 +155,58 @@ async function postDeleteProducts(req, res, next) {
       const _id = req.params._id;
       const product = new Product({ _id: _id });
       await product.delete();
-      res.redirect("/admin-get-products");
+      res.redirect(routPath.admin.get.productManagement);
     } catch (err) {
       console.log(err);
       next(err);
     }
   } else {
-    res.redirect("/admin-get-products");
+    res.redirect(routPath.admin.get.productManagement);
   }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  fetch-api                                 */
+/* -------------------------------------------------------------------------- */
+
+async function postEditOrder(req, res, next) {
+  const _id = req.params._id;
+  console.log("Innerhalb postEditOrder _id:", _id);
+  const sendStatus = req.body.sendStatus;
+  console.log("sendStatus", sendStatus);
+
+  try {
+    const order = await Order.findOne(_id);
+    await order.update(sendStatus);
+  } catch (err) {
+    console.log("Etwas ist schief gelaufen");
+    console.log(err);
+    next(err);
+  }
+
+  res.status(200).send({ message: "Order wurde als Versendet gespeichert" });
 }
 
 function getCsrf(req, res) {
   if (req.session.isAdmin) {
-    // Überprüfen, ob der Benutzer authentifiziert ist
-    res.json({ csrfToken: req.csrfToken() }); // Senden des CSRF-Tokens
+    res.json({ csrfToken: req.csrfToken() });
   } else {
     res.status(401).send("Nicht authentifiziert");
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Module Export                              */
+/* -------------------------------------------------------------------------- */
+
 module.exports = {
-  getProducts: getProducts,
-  getCreateProducts: getCreateProducts,
-  getEditProduct: getEditProduct,
-  getViewAdminOrders: getViewAdminOrders,
-  postCreateProducts: postCreateProducts,
-  postEditProduct: postEditProduct,
-  postDeleteProducts: postDeleteProducts,
-  getCsrf: getCsrf,
+  getProducts,
+  getCreateProducts,
+  getEditProduct,
+  getOrders,
+  postCreateProducts,
+  postEditProduct,
+  postDeleteProducts,
+  postEditOrder,
+  getCsrf,
 };

@@ -1,11 +1,15 @@
-    <%- include("../included/head.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
   </head>
   <body>
-    <%- include("../included/header/header.ejs", {page}) %>
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+    {page}) %>
     <main class="pageStructure">
       <h1 class="page-title">View Orders</h1>
-     <%- include("../included/message.ejs")  %>
+      <%- include('../../' + locals.projectPath.viewPath.included.message) %>
     </main>
-    <%- include("../included/footer.ejs") %>
- </body>
- </html>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

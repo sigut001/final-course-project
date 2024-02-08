@@ -9,7 +9,7 @@ class Product {
     this.price = +productParams.price;
     this.sale = productParams.sale;
     this.salePrice = +productParams.salePrice;
-    this.discount = +productParams.discount;
+    this.discount = productParams.discount;
     this.filename = productParams.filename;
     this.path = "/public/product-images/" + this.filename;
     this.url = "/product-images/" + this.filename;
@@ -49,15 +49,41 @@ class Product {
     if (_id) {
       try {
         const db = await database.getDb();
-        const updateDocument = {
-          $set: {
-            ...productData,
-          },
-        };
+        let updateDocument;
+        if (productData.file) {
+          updateDocument = {
+            $set: {
+              title: productData.title,
+              summary: productData.summary,
+              discription: productData.discription,
+              price: productData.price,
+              sale: productData.sale,
+              salePrice: productData.salePrice,
+              discount: productData.discount,
+              filename: productData.filename,
+              path: productData.path,
+              url: productData.url,
+              status: productData.status,
+            },
+          };
+        } else {
+          updateDocument = {
+            $set: {
+              title: productData.title,
+              summary: productData.summary,
+              discription: productData.discription,
+              price: productData.price,
+              sale: productData.sale,
+              salePrice: productData.salePrice,
+              discount: productData.discount,
+              status: productData.status,
+            },
+          };
+        }
+
         const result = await db
           .collection("products")
           .updateOne({ _id: new ObjectId(_id) }, updateDocument);
-        console.log(result);
       } catch (err) {
         console.log(err);
         console.log(

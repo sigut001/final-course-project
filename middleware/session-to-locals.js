@@ -11,6 +11,7 @@ function sessionDataToLocalsAndDelete(req, res, next) {
 
   // Adminstatus hinzufügen, falls vorhanden (Dieser bleibt in Session erhalten)
   res.locals.isAdmin = req.session.isAdmin;
+  res.locals.cart = req.session.cart;
 
   req.session.signUpData = null;
   req.session.logInData = null;

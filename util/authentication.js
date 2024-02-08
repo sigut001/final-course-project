@@ -2,11 +2,13 @@ function createUserSession(req, user, action) {
   req.session.uid = user._id.toString();
   req.session.save(action);
   req.session.isAdmin = user.isAdmin;
+  req.session.isAuth = true;
 }
 
 function deleteAuthInSession(req, action) {
   req.session.uid = null;
   req.session.isAdmin = null;
+  req.session.cart = [];
   req.session.save(action);
 }
 
@@ -48,10 +50,19 @@ async function messageToSession(req, errorArray, singleMessage) {
   }
 }
 
+function checkAdminStatus(req) {
+  if (req.session.isAdmin) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
-  createUserSession: createUserSession,
-  deleteAuthInSession: deleteAuthInSession,
-  signUpDataToSession: signUpDataToSession,
-  logInDataToSession: logInDataToSession,
-  messageToSession: messageToSession,
+  createUserSession,
+  deleteAuthInSession,
+  signUpDataToSession,
+  logInDataToSession,
+  messageToSession,
+  checkAdminStatus,
 };

@@ -1,15 +1,15 @@
-    <%- include("../included/head.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + locals.projectPath.viewPath.included.head) %>
   </head>
   <body>
-    <%- include("../included/header/header.ejs", {page}) %>
-   <main>
-    <h1>
-        Etwas ist schief gelaufen, bitte versuche es später erneut.
-   </h1>
-   <p>zurück zur <a class="btn btn_color"href="/">Startseite</a></p>
-</main>
-    <%- include("../included/footer.ejs") %>
-    
-    </body>
-    </html>
-
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+    {page}) %>
+    <main>
+      <h1>Etwas ist schief gelaufen, bitte versuche es später erneut.</h1>
+      <p>zurück zur <a class="btn btn_color" href="/">Startseite</a></p>
+    </main>
+    <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
+  </body>
+</html>

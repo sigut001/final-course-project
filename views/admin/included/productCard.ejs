@@ -24,16 +24,18 @@
       <h2 class="productCardTitle"><%= product.title %></h2>
     </div>
     <div class="w-full">
-      <h4 class="productCardPrice">
+      <h4 class="productCardPriceContainer">
         <% if (product.sale === "false") { %>
-        <span>Preis: </span
-        ><span id="productCardPrice"><%= product.price %></span><span>€</span>
-        <% } else if (product.sale === "true") {%>
-        <span>Preis: statt </span
-        ><span class="line-through" id="productCardPrice"
+        <span class="productCardPrice" id="productCardPrice"
           ><%= product.price %></span
-        ><span id="productCardSalePrice"> nur <%= product.salePrice %></span
-        ><span>€</span>
+        ><span> €</span>
+        <% } else if (product.sale === "true") {%>
+        <span class="line-through productCardPrice" id="productCardPrice"
+          ><%= product.price %></span
+        ><span> €</span>
+        <span class="productCardSalePrice" id="productCardSalePrice"
+          ><%= product.salePrice %></span
+        ><span> €</span>
         <% } %>
       </h4>
     </div>

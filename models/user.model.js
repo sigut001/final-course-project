@@ -1,6 +1,7 @@
 const bcryptjs = require("bcryptjs");
 
 const database = require("../database/database");
+const { ObjectId } = require("mongodb");
 class User {
   constructor(
     email,
@@ -24,10 +25,22 @@ class User {
     };
   }
 
+  static async findUserByID(_id) {
+    try {
+      const db = await database.getDb();
+      return await db.collection("users").findOne({ _id: new ObjectId(_id) });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getUser() {
     try {
       const db = await database.getDb();
-      return await db.collection("users").findOne({ email: this.email });
+      const answer = await db
+        .collection("users")
+        .findOne({ email: this.email });
+      return answer;
     } catch (err) {
       console.log(err);
       console.log("Beim Abrufen des Users ist ein Fehler aufgetreten.");
@@ -50,7 +63,7 @@ class User {
         email: this.email,
         password: await bcryptjs.hash(this.password, 12),
         firstName: this.firstName,
-        lastNameName: this.lastName,
+        lastName: this.lastName,
         adress: this.adress,
       });
     } catch (err) {

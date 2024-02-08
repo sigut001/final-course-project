@@ -1,5 +1,5 @@
 const deleteBtns = document.querySelectorAll(".delete_btn");
-
+let abfrageFenster;
 deleteBtns.forEach((btn) => {
   btn.addEventListener("click", async (event) => {
     let csrfToken;
@@ -18,7 +18,7 @@ deleteBtns.forEach((btn) => {
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
 
-    const abfrageFenster = document.createElement("form");
+    abfrageFenster = document.createElement("form");
     abfrageFenster.action = "/admin-delete-product/" + event.target.dataset._id;
     abfrageFenster.method = "POST";
     abfrageFenster.id = "confirmModal";
@@ -66,11 +66,13 @@ deleteBtns.forEach((btn) => {
   });
 });
 
-abfrageFenster.addEventListener("submit", (e) => {
-  setTimeout(() => {
-    document.body.removeChild(overlay);
-  }, 300);
-});
+if (abfrageFenster) {
+  abfrageFenster.addEventListener("submit", (e) => {
+    setTimeout(() => {
+      document.body.removeChild(overlay);
+    }, 300);
+  });
+}
 
 async function fetchCsrfToken() {
   try {

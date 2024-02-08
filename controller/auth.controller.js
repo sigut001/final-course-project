@@ -1,19 +1,20 @@
 const User = require("../models/user.model");
 const authentification = require("../util/authentication");
 const { validationResult } = require("express-validator");
+const { routPath, viewPath } = require("../util/projektPath");
 
 /* -------------------------------------------------------------------------- */
 /*                                getController                               */
 /* -------------------------------------------------------------------------- */
 
 function getLogIn(req, res, next) {
-  res.render("../views/auth/logIn.ejs", {
+  res.render("../" + viewPath.auth.logIn, {
     page: { title: "Log in", nav: "getLogIn" },
   });
 }
 
 function getSignUp(req, res, next) {
-  res.render("../views/auth/signUp.ejs", {
+  res.render("../" + viewPath.auth.signUp, {
     page: { title: "Sign up", nav: "getSignUp" },
   });
 }
@@ -23,16 +24,14 @@ function getSignUp(req, res, next) {
 /* -------------------------------------------------------------------------- */
 
 async function postSignUp(req, res, next) {
-  // Prüfung 1: Valide Nutzereingaben
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     authentification.messageToSession(req, errors.array());
     authentification.signUpDataToSession(req, function () {
-      return res.redirect("/getSignUp");
+      return res.redirect(routPath.auth.get.signUp);
     });
   }
 
-  // Erzeugung User-Objekt
   const user = new User(
     req.body.email,
     req.body.password,
@@ -44,7 +43,6 @@ async function postSignUp(req, res, next) {
     req.body.plz
   );
 
-  // Prüfung 2: Exsistenz User
   try {
     if (await user.getUser()) {
       authentification.messageToSession(
@@ -53,13 +51,12 @@ async function postSignUp(req, res, next) {
         "User exsistiert bereits, loggen sie sich ein."
       );
       authentification.signUpDataToSession(req);
-      return res.redirect("/getLogIn");
+      return res.redirect(routPath.auth.get.logIn);
     }
   } catch (err) {
     next(err);
   }
 
-  // Prüfung abgeschlossen. Anlegen des Users in Datenbank.
   try {
     await user.signup();
     authentification.signUpDataToSession(req);
@@ -67,7 +64,7 @@ async function postSignUp(req, res, next) {
     return next(err);
   }
 
-  res.redirect("/getLogIn");
+  res.redirect(routPath.auth.get.logIn);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -75,22 +72,21 @@ async function postSignUp(req, res, next) {
 /* -------------------------------------------------------------------------- */
 
 async function postLogIn(req, res, next) {
-  // Prüfung 1: Valide Eingaben
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     authentification.messageToSession(req, errors.array());
     authentification.logInDataToSession(req, function () {
-      return res.redirect("/getLogIn");
+      return res.redirect(routPath.auth.get.logIn);
     });
   }
 
-  // Erzeugen eines User-Objektes
   const user = new User(req.body.email, req.body.password);
+  console.log("Beim Login ", req.body);
   let exsitingUser;
 
-  // Prüfung 2: Exsitenz-User
   try {
     exsitingUser = await user.getUser();
+    console.log(exsitingUser);
   } catch (err) {
     return next(err);
   }
@@ -102,11 +98,10 @@ async function postLogIn(req, res, next) {
       "Keinen User mit dieser Email gefunden!"
     );
     authentification.logInDataToSession(req, function () {
-      return res.redirect("/getLogIn");
+      return res.redirect(routPath.auth.get.logIn);
     });
   }
 
-  // Prüfung 3: Passwort Übereinstimmung
   try {
     if (!(await user.proofHashedPassword(exsitingUser.password))) {
       authentification.messageToSession(
@@ -115,15 +110,14 @@ async function postLogIn(req, res, next) {
         "Fehlerhafte Anmeldeinformationen"
       );
       authentification.logInDataToSession(req);
-      return res.redirect("/getLogIn");
+      return res.redirect(routPath.auth.get.logIn);
     }
   } catch (err) {
     next(err);
   }
 
-  // Prüfungen abgeschlossen. Erzeugung von Session-Authenfikationsdaten und redirect zum Loggin
   authentification.createUserSession(req, exsitingUser, function () {
-    res.redirect("/getProducts");
+    res.redirect(routPath.basic.get.default);
   });
 }
 
@@ -133,14 +127,14 @@ async function postLogIn(req, res, next) {
 
 function postLogOut(req, res) {
   authentification.deleteAuthInSession(req, function () {
-    res.redirect("/getLogIn");
+    res.redirect(routPath.auth.get.logIn);
   });
 }
 
 module.exports = {
-  getLogIn: getLogIn,
-  getSignUp: getSignUp,
-  postSignUp: postSignUp,
-  postLogIn: postLogIn,
-  postLogOut: postLogOut,
+  getLogIn,
+  getSignUp,
+  postSignUp,
+  postLogIn,
+  postLogOut,
 };

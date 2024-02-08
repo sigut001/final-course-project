@@ -1,9 +1,9 @@
 const Product = require("../models/product.model");
+const { viewPath } = require("../util/projektPath");
 
 async function getProducts(req, res, next) {
   const productArray = await Product.findAll();
-  console.log(productArray);
-  res.render("../views/product/allProducts.ejs", {
+  res.render("../" + viewPath.product.allProducts, {
     page: { title: "All Products", nav: "products" },
     productArray: productArray,
   });
@@ -11,7 +11,6 @@ async function getProducts(req, res, next) {
 
 async function getProductDetails(req, res, next) {
   const _id = req.params._id;
-  console.log("Hierrrr,", _id);
   let exsitingProduct;
   try {
     exsitingProduct = await Product.findProductById(_id);
@@ -19,13 +18,13 @@ async function getProductDetails(req, res, next) {
     next(err);
   }
 
-  res.render("../views/product/product-details.ejs", {
-    page: { title: "All Products", nav: "getProducts" },
+  res.render("../" + viewPath.product.productDetails, {
+    page: { title: "Product Details", nav: "getProductDetails" },
     product: exsitingProduct,
   });
 }
 
 module.exports = {
-  getProducts: getProducts,
-  getProductDetails: getProductDetails,
+  getProducts,
+  getProductDetails,
 };

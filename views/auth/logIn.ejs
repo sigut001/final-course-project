@@ -1,17 +1,24 @@
-    <%- include("../included/head.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../' + projectPath.viewPath.included.head) %>
   </head>
   <body>
-    <%- include("../included/header/header.ejs", {page}) %>
+    <%- include('../../' + projectPath.viewPath.included.header.header, {page})
+    %>
     <main class="pageStructure">
       <h1 class="page-title">Log In</h1>
-     <%- include("../included/message.ejs")  %>
-
-     <% if (locals.logInData){ %>
-      <form class="form-little" method="POST" action="/postLogIn">
+      <%- include('../../' + projectPath.viewPath.included.message) %> <% if
+      (locals.logInData) { %>
+      <form
+        class="form-little"
+        method="POST"
+        action="<%= projectPath.routPath.auth.post.logIn %>"
+      >
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
           <input
-          value="<%= locals.logInData.email  %>"
+            value="<%= locals.logInData.email %>"
             type="email"
             class="form-control"
             name="email"
@@ -20,53 +27,75 @@
             required
           />
         </div>
-      
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password" id="password" minlength="6" required/>
-        </div>
-
-       
-
-        <%- include("../included/csrf.ejs")  %>
-          <div class="flex justify-between items-center">
-          <button type="submit" class="btn btn_color">Submit</button>
-          <a class="underline" href="#">Passwort vergessen?</a>
-        </div>      </form>
-      <p>Du hast noch kein Konto   <a class="alternativ-link" href="/getSignUp">Sign up</a></p>
-
-      <% } else { %>
-        <form  class="form-little" method="POST" action="/postLogIn">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
           <input
-            type="email"
+            type="password"
             class="form-control"
-            name="email"
-            id="email"
-            aria-describedby="emailHelp"
+            name="password"
+            id="password"
+            minlength="6"
             required
           />
         </div>
-      
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password" id="password" minlength="6" required/>
-        </div>
-
-        
-        
-        <%- include("../included/csrf.ejs")  %>
+        <%- include('../../' + projectPath.viewPath.included.csrf) %>
         <div class="flex justify-between items-center">
           <button type="submit" class="btn btn_color">Submit</button>
           <a class="underline" href="#">Passwort vergessen?</a>
         </div>
       </form>
-          <p>Noch kein Konto?  <a class="alternativ-link" href="/getSignUp">Sign up</a></p>
-          
+      <p>
+        Du hast noch kein Konto
+        <a
+          class="alternativ-link"
+          href="<%= projectPath.routePath.auth.get.signUp %>"
+          >Sign up</a
+        >
+      </p>
+      <% } else { %>
+      <form
+        class="form-little"
+        method="POST"
+        action="<%= projectPath.routPath.auth.post.logIn %>"
+      >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            minlength="6"
+            required
+          />
+        </div>
+        <%- include('../../' + projectPath.viewPath.included.csrf) %>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn btn_color">Submit</button>
+          <a class="underline" href="#">Passwort vergessen?</a>
+        </div>
+      </form>
+      <p>
+        Sie haben noch kein Konto?
+        <a
+          class="alternativ-link"
+          href="<%= projectPath.routPath.auth.get.signUp %>"
+          >Sign up</a
+        >
+      </p>
       <% } %>
     </main>
-    <%- include("../included/footer.ejs") %>
- </body>
- </html>
-
+    <%- include('../../' + projectPath.viewPath.included.footer) %>
+  </body>
+</html>

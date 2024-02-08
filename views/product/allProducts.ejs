@@ -1,24 +1,25 @@
-    <%- include("../included/head.ejs") %>
-    <link rel="stylesheet" href="/css/admin.product-styles.css">
-    <link rel="stylesheet" href="/css/basic.product-styles.css">
-  </head>
-  <body>
-    <%- include("../included/header/header.ejs", {page}) %>
-    <main class="pageStructure">
-      <h1 class="page-title">Products</h1>
-      <section>
-        <ul class="grid grid-cols-4 gap-3">
-                   <!-- Produkte -->
-                   <% if (productArray){ %>
-          <% productArray.forEach((product)=>{ %>
-            <li>
-              <%- include("./included/product-card.ejs", {product})  %>
-            </li>
-        <% })} %>
-        </ul>
-      </section>
-     <%- include("../included/message.ejs")  %>
-    </main>
-    <%- include("../included/footer.ejs") %>
- </body>
- </html>
+<%- include('../../' + projectPath.viewPath.included.head) %>
+<link rel="stylesheet" href="/css/admin.product-styles.css">
+<link rel="stylesheet" href="/css/basic.product-styles.css">
+<script src="/js/product/product.js" defer></script>
+</head>
+<body>
+<%- include("../../" + projectPath.viewPath.included.header.header, {page}) %>
+<main class="pageStructure">
+  <h1 class="page-title">Products</h1>
+  <section>
+    <ul class="grid grid-cols-4 gap-3">
+               <!-- Produkte -->
+               <% if (productArray){ %>
+      <% productArray.forEach((product)=>{ %>
+        <li>
+          <%- include("../../" + projectPath.viewPath.product.included.productCard, {product})  %>
+        </li>
+    <% })} %>
+    </ul>
+  </section>
+ <%- include("../../" + projectPath.viewPath.included.message)  %>
+</main>
+<%- include("../../" + projectPath.viewPath.included.footer) %>
+</body>
+</html>

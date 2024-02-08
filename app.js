@@ -20,6 +20,8 @@ const checkAuthMiddleware = require("./middleware/check-auth");
 const sanitaizeMiddleware = require("./middleware/sanitazation");
 const sessionDataToLocalsAndDelete = require("./middleware/session-to-locals");
 
+const projectPath = require("./util/projektPath");
+
 // Applikation erstellen
 const app = express();
 
@@ -31,7 +33,7 @@ app.set("views", path.join(__dirname, "views"));
 // Festlegen wo statische Datein zu finden sind.
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.json());
 app.use(session(createSessionConfig()));
 // Hinzufügen von csrf protection, diese prüft auf einen gültigen Token vor jeder post-req
 app.use(csurf());
@@ -39,6 +41,11 @@ app.use(expressSanitizer());
 
 // Costum Middleware
 // Erzeugen eines Tokens, welcher für alle weiteren Templates und Files in der locals-Variable verfügbar ist
+app.use((req, res, next) => {
+  res.locals.projectPath = projectPath;
+  next();
+});
+
 app.use(extractCsrf);
 app.use(addCsrfTokenMiddleware);
 app.use(checkAuthMiddleware);
@@ -48,10 +55,10 @@ app.post("*", sanitaizeMiddleware);
 
 // Einbinden der Routenhandler
 app.use(authRoutes.router);
-app.use(basicRoutes.router);
 app.use(productRoutes.router);
 app.use(costumerRoutes.router);
 app.use(adminRoutes.router);
+app.use(basicRoutes.router);
 
 // Einbinden von Errorhandlung
 app.use(errorHandlerMiddleware);
