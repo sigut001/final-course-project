@@ -5,6 +5,7 @@ const routPath = {
       createProduct: "/admin-create-products",
       editProduct: "/admin-edit-product/:_id",
       orderManagement: "/admin-view-orders",
+      orderNumber: "/api/getOrderNumber",
       apiCsrf: "/api/get-csrf-token",
     },
     post: {

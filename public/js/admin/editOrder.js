@@ -1,5 +1,6 @@
 const orders = document.querySelectorAll(".order");
 const archiv = document.getElementById("archiv");
+const csrf = archiv.dataset.csrf;
 
 document.addEventListener("DOMContentLoaded", function () {
   orders.forEach((order) => {
@@ -31,20 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Bei Bearbeitung / Update
     sendStatusSelect.addEventListener("change", function (event) {
       const status = event.target.value;
-      const order_id = order.dataset._id;
-      const url = order.dataset.updateSendStatusURL;
-
-      console.log(url);
+      const url = order.getAttribute("data-updateSendStatusURL");
 
       if (status === "commissioned" || status === "send") {
         // Vorbereiten der Daten für die Fetch-Anfrage
-        const data = { status: status };
+        const data = { sendStatus: status };
 
         fetch(url, {
           method: "POST", // oder 'PUT', abhängig von deiner API
           headers: {
             "Content-Type": "application/json",
-            _csrf: order.dataset.csrf,
+            "X-CSRF-Token": csrf,
           },
           body: JSON.stringify(data),
         })
@@ -55,8 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
           })
           .then((data) => {
-            console.log("Erfolg:", data);
-
             // Layout anpassen für "commissioned"
             if (status === "commissioned") {
               event.target.style.border = "3px solid rgb(245,255,137)";

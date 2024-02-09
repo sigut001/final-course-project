@@ -5,10 +5,6 @@ deleteBtns.forEach((btn) => {
     let csrfToken;
     try {
       csrfToken = await fetchCsrfToken();
-      if (csrfToken) {
-        console.log("CSRF-Token erhalten:", csrfToken);
-        // Hier können Sie weiteren Code schreiben, der den CSRF-Token verwendet
-      }
     } catch (err) {
       console.log(err);
     }

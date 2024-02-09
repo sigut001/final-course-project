@@ -23,7 +23,7 @@ router.get(routPath.costumer.get.cart, costumerController.getCart);
 router.post(routPath.costumer.post.addToCart, costumerController.postAddToCart);
 router.post(
   routPath.costumer.post.postOrder,
-
+  checkAuth,
   costumerController.postOrder
 );
 

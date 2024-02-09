@@ -171,9 +171,7 @@ async function postDeleteProducts(req, res, next) {
 
 async function postEditOrder(req, res, next) {
   const _id = req.params._id;
-  console.log("Innerhalb postEditOrder _id:", _id);
   const sendStatus = req.body.sendStatus;
-  console.log("sendStatus", sendStatus);
 
   try {
     const order = await Order.findOne(_id);
@@ -195,6 +193,23 @@ function getCsrf(req, res) {
   }
 }
 
+async function getNewOrderNumber(req, res, next) {
+  try {
+    const orders = await Order.findAll();
+    let index = 0;
+    orders.forEach((order) => {
+      if (order.status != "send") {
+        index += 1;
+      }
+    });
+    res.status(200).send({ index: index });
+  } catch (err) {
+    console.log("Etwas ist schief gelaufen");
+    console.log(err);
+    next(err);
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 Module Export                              */
 /* -------------------------------------------------------------------------- */
@@ -209,4 +224,5 @@ module.exports = {
   postDeleteProducts,
   postEditOrder,
   getCsrf,
+  getNewOrderNumber,
 };

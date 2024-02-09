@@ -175,7 +175,6 @@ formPrice.addEventListener("input", (event) => {
 });
 
 formStatus.addEventListener("change", (event) => {
-  console.dir(event.target);
   if (event.target.value === "verfügbar") {
     dummyStatus.innerText = "verfügbar";
     dummyStatus.classList = "";

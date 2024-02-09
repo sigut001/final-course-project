@@ -10,6 +10,7 @@
           >Products</a
         >
       </li>
+
       <!-- Tabs für Admins -->
       <% if (locals.isAdmin) { %>
       <li class="<%= page.nav === 'productManagement' ? 'actualView' : '' %>">
@@ -22,10 +23,23 @@
           >Create Products</a
         >
       </li>
-      <li class="<%= page.nav === 'getOrders' ? 'actualView' : '' %>">
+      <li
+        class="flex justify-center gap-1 <%= page.nav === 'getOrders' ? 'actualView' : '' %>"
+      >
         <a href="<%= locals.projectPath.routPath.admin.get.orderManagement %>"
           >Manage Orders</a
         >
+        <p
+          id="orderNumber"
+          data-orderNumberURL="<%= locals.projectPath.routPath.admin.get.orderNumber %>"
+          class="rounded-full bg-[#ee8300] text-[white] h-auto self-center justify-center px-4"
+        >
+          <a
+            class="text-[white]"
+            href="<%= locals.projectPath.routPath.admin.get.orderManagement %>"
+            >0</a
+          >
+        </p>
       </li>
       <li>
         <form
@@ -38,6 +52,7 @@
           <button type="submit">Log out</button>
         </form>
       </li>
+
       <!-- Tabs für User -->
       <% } if (locals.isAuth && !locals.isAdmin) { %>
       <li class="<%= page.nav === 'getCostumerOrders' ? 'actualView' : '' %>">
@@ -56,7 +71,50 @@
           <button type="submit">Log out</button>
         </form>
       </li>
-      
+      <li class="flex justify-center gap-1">
+        <a
+          class="items-center justify-center"
+          href="<%= locals.projectPath.routPath.costumer.get.cart %>"
+        >
+          <svg
+            class="h-12"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+              stroke="#ee8300"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+        ></a>
+        <% if(locals.cart) {%>
+        <p
+          id="cartNumber"
+          class="rounded-full bg-[#ee8300] text-[white] h-auto self-center justify-center px-4"
+        >
+          <a
+            class="text-[white]"
+            href="<%= locals.projectPath.routPath.costumer.get.cart %>"
+            ><%= Object.keys(locals.cart).length %></a
+          >
+        </p>
+        <% } else { %>
+        <p
+          class="rounded-full bg-[#ee8300] h-auto self-center justify-center px-4"
+        >
+          <a
+            class="text-[white]"
+            href="<%= locals.projectPath.routPath.costumer.get.cart %>"
+            >0</a
+          >
+        </p>
+
+        <% } %>
+      </li>
+
       <!-- Tabs für Erstbesucher -->
       <% } if (!locals.isAuth && !locals.isAdmin) { %>
       <li class="<%= page.nav === 'getSignUp' ? 'actualView' : '' %>">
@@ -65,30 +123,50 @@
       <li class="<%= page.nav === 'getLogIn' ? 'actualView' : '' %>">
         <a href="<%= locals.projectPath.routPath.auth.get.logIn %>">Log In</a>
       </li>
-      <% } %>
       <li class="flex justify-center gap-1">
-        <a class="items-center justify-center" href="<%= locals.projectPath.routPath.costumer.get.cart %>">
-          <svg
-          class="h-12"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <a
+          class="items-center justify-center"
+          href="<%= locals.projectPath.routPath.costumer.get.cart %>"
         >
-          <path
-            d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
-            stroke="#ee8300"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg></a>
+          <svg
+            class="h-12"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+              stroke="#ee8300"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+        ></a>
         <% if(locals.cart) {%>
-          <p  id="cartNumber"class="rounded-full bg-[#ee8300] text-[white] h-auto self-center justify-center px-4" ><a class="text-[white]" href="<%= locals.projectPath.routPath.costumer.get.cart %>"><%= Object.keys(locals.cart).length %></a></p>
+        <p
+          id="cartNumber"
+          class="rounded-full bg-[#ee8300] text-[white] h-auto self-center justify-center px-4"
+        >
+          <a
+            class="text-[white]"
+            href="<%= locals.projectPath.routPath.costumer.get.cart %>"
+            ><%= Object.keys(locals.cart).length %></a
+          >
+        </p>
         <% } else { %>
-          <p class="rounded-full bg-[#ee8300]  h-auto self-center justify-center px-4"><a class="text-[white]" href="<%= locals.projectPath.routPath.costumer.get.cart %>">0</a></p>
-        
-          <% } %>
+        <p
+          class="rounded-full bg-[#ee8300] h-auto self-center justify-center px-4"
+        >
+          <a
+            class="text-[white]"
+            href="<%= locals.projectPath.routPath.costumer.get.cart %>"
+            >0</a
+          >
+        </p>
+
+        <% } %>
       </li>
+      <% } %>
     </ul>
   </nav>
 </header>

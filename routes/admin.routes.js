@@ -32,6 +32,12 @@ router.get(
   checkAdmin,
   adminController.getOrders
 );
+
+router.get(
+  routPath.admin.get.orderNumber,
+  checkAdmin,
+  adminController.getNewOrderNumber
+);
 router.get(routPath.admin.get.apiCsrf, checkAdmin, adminController.getCsrf);
 
 /* -------------------------------------------------------------------------- */

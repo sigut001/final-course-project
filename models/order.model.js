@@ -58,7 +58,6 @@ class Order {
       const order = await db
         .collection("orders")
         .findOne({ _id: new ObjectId(_id) });
-      console.log("HIER::: ", order);
       return new Order(null, order);
     } catch (err) {
       console.log("Fehler beim Abrufen der Bestellungen");
@@ -68,6 +67,7 @@ class Order {
 
   async update(sendStatus) {
     if (this._id) {
+      console.log("in update()", sendStatus, this._id);
       try {
         const db = await database.getDb();
         let updateOrder;

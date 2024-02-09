@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="/css/basic.product-styles.css" />
 
     <script src="/js/admin/editOrder.js" defer></script>
+<script src="/js/admin/getNewOrderNumber.js" defer></script>
+
     
 
 
@@ -15,12 +17,12 @@
 <main >
   <div class="flex justify-between self-center">
     <h1 class="text-4xl"><strong>Bestellübersicht</strong></h1>
-    <p id="archiv" data-hidden="true" class="btn btn_color_alt text-[#ee8300]">Archivierte Bestellungen einblenden</p>
+    <p id="archiv" data-csrf="<%= locals.csrf %>" data-hidden="true" class="btn btn_color_alt text-[#ee8300] ">Archivierte Bestellungen einblenden</p>
   </div>
     <div class="flex flex-col justify-start items-start gap-4 w-full p-3">
     <% page.orders.forEach((order)=>{ %>
-      <div class="order flex flex-col p-3 w-full rounded-sm bg-[rgb(43,42,42)] border-[#ee8300] border-solid border-2" data-updateSendStatusURL ="<%= locals.projectPath.routPath.admin.post.editOrder.replace(':_id', order._id) %>" data-order_id="<%= order._id %>" <% if (order.finishedTimestamp) { %>data-finishedOrder="true"<% } %>>
-
+      <div class="order flex flex-col p-3 w-full rounded-sm bg-[rgb(43,42,42)] border-[#ee8300] border-solid border-2"  data-updateSendStatusURL = "<%= locals.projectPath.routPath.admin.post.editOrder.replace(':_id', order._id) %>" data-order_id="<%= order._id %>" <% if (order.finishedTimestamp) { %>data-finishedOrder="true"<% } %>>
+       <!-- Diese Consolenausgabe gibt mir die richtige url an  -->
         <div class="w-full flex justify-start gap-5 items-start">
           <!-- Kundeninformationen -->
           <div class="w-1/5 p-2 flex flex-col justify-between items-start">
