@@ -19,6 +19,8 @@
   --secondary-black: rgb(43, 42, 42);
   --secondary-grey: rgb(93, 86, 86);
   --secondary-orange: rgb(255, 175, 77);
+
+  font-size: 14px;
 }
 
 .c-primary-white {
@@ -109,7 +111,7 @@ body {
 }
 
 main {
-  width: 80%;
+  width: 90%;
 }
 
 main {

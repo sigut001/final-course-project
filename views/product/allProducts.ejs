@@ -1,6 +1,11 @@
 <%- include('../../' + projectPath.viewPath.included.head) %>
 <link rel="stylesheet" href="/css/admin.product-styles.css">
 <link rel="stylesheet" href="/css/basic.product-styles.css">
+
+<% if (locals.isAdmin){ %>
+<script src="/js/admin/getNewOrderNumber.js" defer></script>
+
+  <% } %>
 <script src="/js/product/product.js" defer></script>
 </head>
 <body>

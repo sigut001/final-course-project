@@ -3,9 +3,12 @@ const { viewPath, routPath } = require("../util/projektPath");
 const CartItem = require("../models/cartItem.model");
 const Order = require("../models/order.model");
 
-function getCostumerOrders(req, res, next) {
+async function getCostumerOrders(req, res, next) {
+  console.log(req.session.uid);
+  const orders = await Order.findAllOrdersFromUser(req.session.email);
+  console.log("Costumer Orders:", orders);
   res.render("../" + viewPath.costumer.viewCostumerOrders, {
-    page: { title: "View Orders", nav: "getCostumerOrders" },
+    page: { title: "View Orders", nav: "getOrders", orders: orders },
   });
 }
 

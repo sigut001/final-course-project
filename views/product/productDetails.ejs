@@ -1,5 +1,9 @@
 <%- include("../../"+locals.projectPath.viewPath.included.head) %>
     <script src="/js/product/product.js" defer></script>
+    <% if (locals.isAdmin){ %>
+<script src="/js/admin/getNewOrderNumber.js" defer></script>
+
+  <% } %>
 
 </head>
 <body>

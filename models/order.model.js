@@ -52,6 +52,25 @@ class Order {
     }
   }
 
+  static async findAllOrdersFromUser(email) {
+    console.log("email: ", email);
+    try {
+      const db = await database.getDb();
+      const orders = await db
+        .collection("orders")
+        .find({
+          "user.email": email,
+        })
+        .toArray();
+
+      console.log(orders);
+      return orders;
+    } catch (err) {
+      console.log(`Fehler beim Abrufen der Bestellungen: ${err.message}`);
+      throw err;
+    }
+  }
+
   static async findOne(_id) {
     try {
       const db = await database.getDb();

@@ -5,7 +5,6 @@ const csrf = archiv.dataset.csrf;
 document.addEventListener("DOMContentLoaded", function () {
   orders.forEach((order) => {
     const sendStatusSelect = order.querySelector(".edit-sendStatus");
-    const sendStatusForm = order.querySelector(".form-sendStatus");
 
     //Anfangsbedingungen
     // Bereits bearbeitete und versendete Orders werden bei beginn ausgeblendet
@@ -72,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 checkbox.disabled = true;
               });
             }
+            window.location.reload();
           })
           .catch((error) => {
             console.error("Fehler:", error);
