@@ -6,32 +6,32 @@ Dieses Abschlussprojekt markiert den Höhepunkt meines Webentwicklungskurses (ht
 
 Verwendete Technologien und Best Practices
 
-Styling: Einsatz von Vanilla CSS und Tailwind CSS für das Design.
-Datenbank: MongoDB für die Speicherung von Benutzerdaten, Produkten, Bestellungen und Sessions.
-Datenaustausch mit dem Server: Kombination aus herkömmlichen Formularen, multipart-Formularen für Bilduploads und Fetch-API-Requests für das Laden von dynamischen Inhalten.
-Authentifizierung: Implementierung von Anmelde- und Registrierungsfunktionen mit Bcrypt für sichere Passwortverschlüsselung.
-Einkaufswagen: Speicherung der Einkaufswagen-Daten in den Sessiondaten der Kunden.
-Backend: Nutzung von NodeJS und Express.
-Frontend: Einsatz von Vanilla JavaScript.
-Templates: Verwendung der EJS-Template-Engine.
-Architektur: Konsequente Anwendung des MVC-Patterns, unterteilt in Module, Views und Controller.
-Middleware: Entwicklung spezifischer Middleware für Authentifizierung, Validierung und Datenbereinigung.
-Sicherheit: Verwendung von CSRF-Tokens sowie Middleware für die Bereinigung von Nutzereingaben
-Routen: Auslagerung der Routen aus der Hauptdatei und zentrale Speicherung der Pfadangaben, um eine einfache Anpassung zu ermöglichen.
-Versionierung: Das Projekt wurde auf GitHub veröffentlicht, um es der Community zugänglich zu machen.
+-  Styling: Einsatz von Vanilla CSS und Tailwind CSS für das Design.
+-  Datenbank: MongoDB für die Speicherung von Benutzerdaten, Produkten, Bestellungen und Sessions.
+-  Datenaustausch mit dem Server: Kombination aus herkömmlichen Formularen, multipart-Formularen für Bilduploads und Fetch-API-Requests für das Laden von dynamischen Inhalten.
+-  Authentifizierung: Implementierung von Anmelde- und Registrierungsfunktionen mit Bcrypt für sichere Passwortverschlüsselung.
+-  Einkaufswagen: Speicherung der Einkaufswagen-Daten in den Sessiondaten der Kunden.
+-  Backend: Nutzung von NodeJS und Express.
+-  Frontend: Einsatz von Vanilla JavaScript.
+-  Templates: Verwendung der EJS-Template-Engine.
+-  Architektur: Konsequente Anwendung des MVC-Patterns, unterteilt in Module, Views und Controller.
+-  Middleware: Entwicklung spezifischer Middleware für Authentifizierung, Validierung und Datenbereinigung.
+-  Sicherheit: Verwendung von CSRF-Tokens sowie Middleware für die Bereinigung von Nutzereingaben
+-  Routen: Auslagerung der Routen aus der Hauptdatei und zentrale Speicherung der Pfadangaben, um eine einfache Anpassung zu ermöglichen.
+-  Versionierung: Das Projekt wurde auf GitHub veröffentlicht, um es der Community zugänglich zu machen.
 
 Verzeichnisstruktur und Dateien
 
-Root-Verzeichnis: Enthält Konfigurationsdateien und den Einstiegspunkt (app.js).
-.gitignore/.prettierignore: Ausschluss bestimmter Dateien von Git und Prettier.
-package.json/package-lock.json: Definition von Abhängigkeiten und Skripten.
-tailwind.config.js: Konfiguration für Tailwind CSS.
-config: Konfigurationsdateien für allgemeine Einstellungen und Session-Management.
-controller: Controller-Dateien für die Anwendungslogik verschiedener Routen.
-database: Verbindung und Konfiguration der MongoDB-Datenbank.
-middleware: Funktionen für Authentifizierungschecks, Fehlerbehandlung und Bild-Uploads.
-models: Datenmodelle, die die Struktur der Datenbanktabellen definieren.
-public: Statische Dateien wie CSS, Bilder und JavaScript, organisiert in Unterordnern.
+-  Root-Verzeichnis: Enthält Konfigurationsdateien und den Einstiegspunkt (app.js).
+-  .gitignore/.prettierignore: Ausschluss bestimmter Dateien von Git und Prettier.
+-  package.json/package-lock.json: Definition von Abhängigkeiten und Skripten.
+-  tailwind.config.js: Konfiguration für Tailwind CSS.
+-  config: Konfigurationsdateien für allgemeine Einstellungen und Session-Management.
+-  controller: Controller-Dateien für die Anwendungslogik verschiedener Routen.
+-  database: Verbindung und Konfiguration der MongoDB-Datenbank.
+-  middleware: Funktionen für Authentifizierungschecks, Fehlerbehandlung und Bild-Uploads.
+-  models: Datenmodelle, die die Struktur der Datenbanktabellen definieren.
+-  public: Statische Dateien wie CSS, Bilder und JavaScript, organisiert in Unterordnern.
 
 Abschluss:
 
