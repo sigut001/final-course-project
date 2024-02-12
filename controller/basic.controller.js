@@ -2,7 +2,9 @@ const Product = require("../models/product.model");
 const { routPath, viewPath } = require("../util/projektPath");
 
 function getHomepage(req, res, next) {
-  res.redirect(routPath.product.get.allProducts);
+  res.render("../" + viewPath.base.home, {
+    page: { title: "Home", nav: "home" },
+  });
 }
 
 function get500(req, res, next) {

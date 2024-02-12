@@ -5,11 +5,16 @@
   <nav>
     <ul>
       <!-- Standart Tabs -->
+      <li class="<%= page.nav === 'home' ? 'actualView' : '' %>">
+        <a href="<%= locals.projectPath.routPath.basic.get.default %>">Home</a>
+      </li>
+      <% if (!locals.isAdmin){ %>
       <li class="<%= page.nav === 'products' ? 'actualView' : '' %>">
         <a href="<%= locals.projectPath.routPath.product.get.allProducts %>"
           >Products</a
         >
       </li>
+      <% } %>
 
       <!-- Tabs für Admins -->
       <% if (locals.isAdmin) { %>

@@ -11,7 +11,7 @@
       <%- include('../../' + locals.projectPath.viewPath.included.message) %> <%
       if (locals.signUpData) { %>
       <form
-        class="form-big"
+        class="w-2/5"
         method="POST"
         action="<%= locals.projectPath.routPath.auth.post.signUp %>"
       >
@@ -147,7 +147,7 @@
       </p>
       <% } else { %>
       <form
-        class="form-big"
+        class="w-2/5"
         method="POST"
         action="<%= locals.projectPath.routPath.auth.post.signUp %>"
       >

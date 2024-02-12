@@ -1,17 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
     <%- include('../../' + locals.projectPath.viewPath.included.head) %>
-    <title>OldStuff</title>
+    <link rel="stylesheet" href="/css/basic.animations.css">
+
   </head>
   <body>
-    <header>
-      <%- include('../../' + locals.projectPath.viewPath.included.header.header,
-      {nav: nav}) %>
-    </header>
-    <main class="pageStructure">
-      <h1>Welcome at OldStuff!</h1>
-      <h3>View our products, you'll find treasures.</h3>
+    <%- include('../../' + locals.projectPath.viewPath.included.header.header,
+    {page}) %>
+    <main class="flex flex-col gap-4">
+      <section class="flex flex-col justify-start items-center py-32">
+        <h1 class="m-auto text-5xl p-3">Willkommen auf der Webseite !</h1>
+        <div
+          class="flex gap-4 w-1/2 p-4 border-4 border-solid border-[#ee8300] mt-12 animate-from-left"
+        >
+          <img class="size-96" src="/img/passfoto.png" alt="Passfoto von Simon" />
+          <div class="flex flex-col gap-4 items-center justify-start">
+            <p class="text-2xl">
+              Hallo, mein Name ist Simon, ich bin 28 Jahre alt, leidenschaftlicher
+              Programmierer und Autodidakt.
+            </p>
+            <p class="text-2xl">
+              Mein Ziel ist es in naher Zukunft als Softwareentwickler arbeiten.
+            </p>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section class="flex flex-col justify-start items-center py-32">
+        <h1 class="m-auto text-5xl p-3">Das Projekt</h1>
+        <div class="flex gap-4 flex-col text-2xl items-center text-[#ffaf4d]">     
+          <div class="w-3/4 p-4 flex flex-col gap-4 ">
+              <p class="text-left" >
+                Dieses Abschlussprojekt markiert den Höhepunkt meines
+                Webentwicklungskurses, in dem ich meine erlernten Fähigkeiten und Best Practices in
+                einem umfassenden, realitätsnahen Projekt angewendet habe.
+              </p>
+          </div> 
+          <div class="px-6 w-full flex justify-center">
+              <a
+                href="https://www.udemy.com/course/100-days-of-code-web-development-bootcamp/"
+                class="btn btn_color"
+                target="_blank"
+                >Hier gehts zum Kurs
+              </a> 
+            </div>   
+          <div class="w-3/4 p-4 flex flex-col gap-4">
+              <p class="text-left">
+                  Ziel war die Entwicklung einer benutzerfreundlichen
+                  Desktop-Webanwendung – konkret eines Onlineshops, in dem
+                  Produkte durch einen Administrator zum Verkauf eingestellt
+                  werden können.  Kunden haben die Möglichkeit, Produkte mit variablen Rabatten
+                  und Verfügbarkeiten zu erwerben, wobei sich die Preise dynamisch
+                  berechnen.
+                </p>
+          </div>   
+          <div class="w-3/4 p-4 flex flex-col gap-4">
+              <p class="text-left">
+                 Der Administrator kann Produkte jederzeit bearbeiten oder
+                  löschen, während Kunden Produkte in auswählbaren Mengen zum
+                  Warenkorb hinzufügen und die Bestellung aufgeben können. Bestellungen werden direkt an den Administrator weitergeleitet,
+                  der im Admin-Dashboard mittels einer Benachrichtigungsfunktion
+                  über neue Aufträge informiert wird. Dort kann er Bestellungen detailliert einsehen und bearbeiten,
+                  wobei ihm spezielle Tools zur effizienten Kommissionierung und
+                  Verwaltung der Produkte zur Verfügung stehen. Kunden werden
+                  automatisch über den Bearbeitungs- / Sendestatus der
+                  Bestellungen informiert.
+                </p>
+          </div> 
+         
+        </div>
+      </section>
+      <hr>
+      <section class="flex flex-col justify-start items-center py-32">
+        <h1 class="m-auto text-5xl p-3">Verwendete Technologien und Best Practices</h1>
+        <div class="flex gap-4 flex-col text-2xl items-center text-[#ffaf4d]">     
+          <div class="w-3/4 p-4 flex flex-col gap-4 ">
+            <ul class="list-disc pl-5">
+              <li class="mb-2">
+                <strong>Styling:</strong> Einsatz von Vanilla CSS und Tailwind CSS für das Design.
+              </li>
+              <li class="mb-2">
+                <strong>Datenbank:</strong> MongoDB für die Speicherung von Benutzerdaten, Produkten, Bestellungen und Sessions.
+              </li>
+              <li class="mb-2">
+                <strong>Datenaustausch mit dem Server:</strong> Kombination aus herkömmlichen Formularen, multipart-Formularen für Bilduploads und Fetch-API-Requests für das Laden von dynamischen Inhalten.
+              </li>
+              <li class="mb-2">
+                <strong>Authentifizierung:</strong> Implementierung von Anmelde- und Registrierungsfunktionen mit Bcrypt für sichere Passwortverschlüsselung.
+              </li>
+              <li class="mb-2">
+                <strong>Einkaufswagen:</strong> Speicherung der Einkaufswagen-Daten in den Sessiondaten der Kunden.
+              </li>
+              <li class="mb-2">
+                <strong>Backend:</strong> Nutzung von NodeJS und Express.
+              </li>
+              <li class="mb-2">
+                <strong>Frontend:</strong> Einsatz von Vanilla JavaScript.
+              </li>
+              <li class="mb-2">
+                <strong>Templates:</strong> Verwendung der EJS-Template-Engine.
+              </li>
+              <li class="mb-2">
+                <strong>Architektur:</strong> Konsequente Anwendung des MVC-Patterns, unterteilt in Module, Views und Controller.
+              </li>
+              <li class="mb-2">
+                <strong>Middleware:</strong> Entwicklung spezifischer Middleware für Authentifizierung, Validierung und Datenbereinigung.
+              </li>
+              <li class="mb-2">
+                <strong>Sicherheit:</strong> Verwendung von CSRF-Tokens sowie Middleware für die Bereinigung von Nutzereingaben.
+              </li>
+              <li class="mb-2">
+                <strong>Routen:</strong> Auslagerung der Routen aus der Hauptdatei und zentrale Speicherung der Pfadangaben für einfache Anpassungen.
+              </li>
+              <li class="mb-2">
+                <strong>Versionierung:</strong> Das Projekt wurde auf GitHub veröffentlicht, um es der Community zugänglich zu machen.
+              </li>
+            </ul>
+          </div> 
+        </div>
+      </section>
     </main>
     <%- include('../../' + locals.projectPath.viewPath.included.footer) %>
   </body>
